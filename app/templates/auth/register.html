@@ -6,12 +6,30 @@
 
 {% block content %}
   <form method="post">
-    <label for="nom">Nom</label>
-    <input name="nom" id="nom" required>
+    <label for="isername">Nom</label>
+    <input name="username" id="nom" required>
+
     <label for="prenom">Prénom</label>
     <input name="prenom" id="prenom" required>
-    <label for="mot de passe">Mot de passe</label>
-    <input type="mot de passe" name="mot de passe" id="mdp" required>
+
+    <label for="date_naissance">Date de naissance</label>
+    <input name="date_naissance" id="date_naissance" required>
+
+    <label for="sexe">Sexe</label>
+    <input name="sexe" id="sexe" required>
+
+    <label for="no_telephone">Numéro de téléphone</label>
+    <input name="no_telephone" id="no_telephone" required>
+
+    <label for="adresse">Adresse</label>
+    <input name="adresse" id="adresse" required>
+
+    <label for="email">Email</label>
+    <input name="email" id="email" required>
+
+    <label for="password">Mot de passe</label>
+    <input type="password" name="password" id="mdp" required>
+
     <input type="submit" value="S'inscrire">
   </form>
 {% endblock %}

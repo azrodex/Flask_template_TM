@@ -14,24 +14,30 @@ def register():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        nom = request.form['nom']
-        mot_passe = request.form['mot de passe']
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        prenom = request.form['prenom']
+        date_naissance = request.form['date_naissance']
+        no_telephone = request.form['no_telephone']
+        adresse = request.form['adresse']
+        sexe = request.form['sexe']
 
         # On récupère la base de donnée
         db = get_db()
 
         # Si le nom d'utilisateur et le mot de passe ont bien une valeur
         # on essaie d'insérer l'utilisateur dans la base de données
-        if nom and mot_passe:
+        if username and password:
             try:
-                db.execute("INSERT INTO client (nom, mdp_client) VALUES (?, ?)",(nom, generate_password_hash(mot_passe)))
+                db.execute("INSERT INTO client (nom, mdp_client, email_client, prenom, date_naissance, no_téléphone, adresse, sexe) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",(username, generate_password_hash(password),email, prenom, date_naissance, no_telephone, adresse, sexe))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:
 
                 # La fonction flash dans Flask est utilisée pour stocker un message dans la session de l'utilisateur
                 # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
-                error = f"User {nom} is already registered."
+                error = f"User {username} is already registered."
                 flash(error)
                 return redirect(url_for("auth.register"))
             
@@ -113,7 +119,7 @@ def load_logged_in_user():
     else:
          # On récupère la base de données et on récupère l'utilisateur correspondant à l'id stocké dans le cookie session
         db = get_db()
-        g.user = db.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
+        g.user = db.execute('SELECT * FROM client WHERE id = ?', (no_client,)).fetchone()
 
 
 
