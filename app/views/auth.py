@@ -14,31 +14,31 @@ def register():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        username = request.form['username']
-        password = request.form['password']
+        nom = request.form['nom']
+        mot_passe = request.form['mot de passe']
 
         # On récupère la base de donnée
         db = get_db()
 
         # Si le nom d'utilisateur et le mot de passe ont bien une valeur
         # on essaie d'insérer l'utilisateur dans la base de données
-        if username and password:
+        if nom and mot_passe:
             try:
-                db.execute("INSERT INTO users (username, password) VALUES (?, ?)",(username, generate_password_hash(password)))
+                db.execute("INSERT INTO client (nom, mdp_client) VALUES (?, ?)",(nom, generate_password_hash(mot_passe)))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:
 
                 # La fonction flash dans Flask est utilisée pour stocker un message dans la session de l'utilisateur
                 # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
-                error = f"User {username} is already registered."
+                error = f"User {nom} is already registered."
                 flash(error)
                 return redirect(url_for("auth.register"))
             
             return redirect(url_for("auth.login"))
          
         else:
-            error = "Username or password invalid"
+            error = "nom or mot de passe invalid"
             flash(error)
             return redirect(url_for("auth.login"))
     else:
@@ -52,22 +52,22 @@ def login():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        username = request.form['username']
-        password = request.form['password']
+        nom = request.form['nom']
+        mot_passe = request.form['mot de passe']
 
         # On récupère la base de données
         db = get_db()
         
         # On récupère l'utilisateur avec le username spécifié (une contrainte dans la db indique que le nom d'utilisateur est unique)
         # La virgule après username est utilisée pour créer un tuple contenant une valeur unique
-        user = db.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        user = db.execute('SELECT * FROM client WHERE nom = ?', (nom,)).fetchone()
 
         # Si aucun utilisateur n'est trouve ou si le mot de passe est incorrect
         # on crée une variable error 
         error = None
         if user is None:
-            error = 'Incorrect username.'
-        elif not check_password_hash(user['password'], password):
+            error = 'Incorrect nom.'
+        elif not check_password_hash(user['mot de passe'], mot_passe):
             error = 'Incorrect password.'
 
         # S'il n'y pas d'erreur, on ajoute l'id de l'utilisateur dans une variable de session
