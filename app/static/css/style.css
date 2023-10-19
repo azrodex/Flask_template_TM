@@ -1,3 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
 body{
-    background-color: beige;
+    height: 100vh;
+    background-color: #000;
+    background-image: url('https://i0.wp.com/thetemplelife.com/wp-content/uploads/2018/04/Radient-Love-1.jpeg?w=3000&ssl=1');
+    background-size: cover;
+    background-position: center;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+}
+
+a:hover{
+    color: red;
 }

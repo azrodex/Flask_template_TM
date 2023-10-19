@@ -28,7 +28,7 @@ def register():
 
         # Si le nom d'utilisateur et le mot de passe ont bien une valeur
         # on essaie d'insérer l'utilisateur dans la base de données
-        if username and password:
+        if email and password:
             try:
                 db.execute("INSERT INTO client (nom, mdp_client, email_client, prenom, date_naissance, no_téléphone, adresse, sexe) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",(username, generate_password_hash(password),email, prenom, date_naissance, no_telephone, adresse, sexe))
                 # db.commit() permet de valider une modification de la base de données
@@ -37,7 +37,7 @@ def register():
 
                 # La fonction flash dans Flask est utilisée pour stocker un message dans la session de l'utilisateur
                 # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
-                error = f"User {username} is already registered."
+                error = f"L'email {email} est déjà lié à un compte."
                 flash(error)
                 return redirect(url_for("auth.register"))
             
@@ -58,23 +58,23 @@ def login():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        nom = request.form['nom']
-        mot_passe = request.form['mot de passe']
+        username = request.form['email']
+        password = request.form['password']
 
         # On récupère la base de données
         db = get_db()
         
         # On récupère l'utilisateur avec le username spécifié (une contrainte dans la db indique que le nom d'utilisateur est unique)
         # La virgule après username est utilisée pour créer un tuple contenant une valeur unique
-        user = db.execute('SELECT * FROM client WHERE nom = ?', (nom,)).fetchone()
+        user = db.execute('SELECT * FROM client WHERE email_client = ?', (username,)).fetchone()
 
         # Si aucun utilisateur n'est trouve ou si le mot de passe est incorrect
         # on crée une variable error 
         error = None
         if user is None:
-            error = 'Incorrect nom.'
-        elif not check_password_hash(user['mot de passe'], mot_passe):
-            error = 'Incorrect password.'
+            error = "Aucun compte n'est lié à cet email."
+        elif not check_password_hash(user['password'], password):
+            error = 'Votre mot de passe est faux.'
 
         # S'il n'y pas d'erreur, on ajoute l'id de l'utilisateur dans une variable de session
         # De cette manière, à chaque requête de l'utilisateur, on pourra récupérer l'id dans le cookie session
