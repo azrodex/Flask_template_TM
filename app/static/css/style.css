@@ -7,8 +7,8 @@
 
 body{
     height: 100vh;
-    background-color: #000;
-    background-image: url('https://i0.wp.com/thetemplelife.com/wp-content/uploads/2018/04/Radient-Love-1.jpeg?w=3000&ssl=1');
+    background-color: #fff;
+    /* background-image: url('https://i0.wp.com/thetemplelife.com/wp-content/uploads/2018/04/Radient-Love-1.jpeg?w=3000&ssl=1'); */
     background-size: cover;
     background-position: center;
 }
@@ -19,10 +19,38 @@ li{
 
 a{
     text-decoration: none;
-    color: #fff;
+    color: black;
     font-size: 1rem;
 }
 
 a:hover{
     color: red;
+}
+
+/* HEADER */
+header{
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar{
+    /* width: 100%;
+    height: 60px;
+    max-width: 1200px; */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-image: url('https://i0.wp.com/thetemplelife.com/wp-content/uploads/2018/04/Radient-Love-1.jpeg?w=3000&ssl=1'); */
+}
+
+.navbar .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+.navbar .links{
+    display: flex;
+    gap: 2rem;
 }

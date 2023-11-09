@@ -6,15 +6,16 @@
 <body>
     <header>
         <div class="navbar">
-            <div class="logo"><a href="#">Lumière de Vie</a></div>
+            <div class="logo"><a href="">Lumière de Vie</a></div>
             <ul class="links">
-                <li><a href="{{ url_for('home.landing_page') }}">Accueil</a></li>
-                <li><a href="{{ url_for('page.contact_page') }}"></a>Contact</li>
-                <li><a href="{{ url_for('page.service_page') }}"></a>Services</li>
-                <li><a href="{{ url_for('page.decouvrir_page') }}"></a>Découvrir</li>
-
-                {% if g.client %}
-                    <span>{{ g.client['nom'] }}</span>
+                <li><a href="{{ url_for('home.home_page') }}">Accueil</a></li>
+                <li><a href="{{ url_for('home.contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('home.services') }}">Services</a></li>
+                <li><a href="{{ url_for('home.decouvrir') }}">Découvrir</a></li>
+            </ul>
+            <div>
+                {% if g.user %}
+                    <span>{{ g.user['nom'] }}</span>
 
                     <li><a href="{{ url_for('auth.logout') }}">Se déconnecter</a></li>
                     <li><a href="{{url_for('user.show_profile')}}">Afficher le profil</a></li>
@@ -23,16 +24,11 @@
                     <li><a href="{{ url_for('auth.register') }}">S'inscrire</a></li>
                     <li><a href="{{ url_for('auth.login') }}">Se connecter</a></li>
                 {% endif %}
-
-            </ul>
-            <a href="#" class="action-btn"></a>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-
-
             </div>
         </div>
     </header>
+
+    
         
     <section class="content">
         <header>

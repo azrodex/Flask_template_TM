@@ -73,14 +73,18 @@ def login():
         error = None
         if user is None:
             error = "Aucun compte n'est lié à cet email."
-        elif not check_password_hash(user['password'], password):
+        elif not check_password_hash(user['mdp_client'], password):
             error = 'Votre mot de passe est faux.'
+
+        print("L'erreur vaut", error)
 
         # S'il n'y pas d'erreur, on ajoute l'id de l'utilisateur dans une variable de session
         # De cette manière, à chaque requête de l'utilisateur, on pourra récupérer l'id dans le cookie session
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
+            session['user_id'] = user['no_client']
+
+            print(session)
             # On redirige l'utilisateur vers la page principale une fois qu'il s'est connecté
             return redirect("/")
         
@@ -109,6 +113,8 @@ def load_logged_in_user():
     # On récupère l'id de l'utilisateur stocké dans le cookie session
     user_id = session.get('user_id')
 
+    print("Le user id vaut", user_id)
+
     # Si l'id de l'utilisateur dans le cookie session est nul, cela signifie que l'utilisateur n'est pas connecté
     # On met donc l'attribut 'user' de l'objet 'g' à None
     if user_id is None:
@@ -119,7 +125,8 @@ def load_logged_in_user():
     else:
          # On récupère la base de données et on récupère l'utilisateur correspondant à l'id stocké dans le cookie session
         db = get_db()
-        g.user = db.execute('SELECT * FROM client WHERE id = ?', (no_client,)).fetchone()
+        g.user = db.execute('SELECT * FROM client WHERE no_client = ?', (user_id,)).fetchone()
+        print("g user vaut", g.user)
 
 
 
