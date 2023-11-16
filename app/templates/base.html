@@ -1,12 +1,13 @@
 <!doctype html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-dfSTr56of02rK2xV0ju1ebq5Fkgg9vVzNDR9c/C8pJQjI4etK1ylLG1Ip1KiHRb8" crossorigin="anonymous">
+    <title>Lumière de Vie</title>
 </head>
 
 <body>
     <header>
         <div class="navbar">
-            <div class="logo"><a href="">Lumière de Vie</a></div>
             <ul class="links">
                 <li><a href="{{ url_for('home.home_page') }}">Accueil</a></li>
                 <li><a href="{{ url_for('home.contact') }}">Contact</a></li>
@@ -15,31 +16,26 @@
             </ul>
             <div>
                 {% if g.user %}
-                    <span>{{ g.user['nom'] }}</span>
-
                     <li><a href="{{ url_for('auth.logout') }}">Se déconnecter</a></li>
                     <li><a href="{{url_for('user.show_profile')}}">Afficher le profil</a></li>
-
                 {% else %}
                     <li><a href="{{ url_for('auth.register') }}">S'inscrire</a></li>
                     <li><a href="{{ url_for('auth.login') }}">Se connecter</a></li>
                 {% endif %}
             </div>
         </div>
+        {% block header %}{% endblock %}
     </header>
 
     
         
     <section class="content">
-        <header>
-            {% block header %}{% endblock %}
-        </header>
+        {% block content %}{% endblock %}
+    
         
         {% for message in get_flashed_messages() %}
             <div class="flash">{{ message }}</div>
         {% endfor %}
-
-        {% block content %}{% endblock %}
     </section>
 
     <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
