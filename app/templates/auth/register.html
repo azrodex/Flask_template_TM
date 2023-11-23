@@ -1,35 +1,64 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}S'enregistrer{% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
-  <form method="post">
-    <label for="username">Nom</label>
-    <input name="username" id="nom" required>
+  <div class="register-container">
+    <form method="post">
+      <div class="info">
+        <h1>S'inscrire</h1>
 
-    <label for="prenom">Prénom</label>
-    <input name="prenom" id="prenom" required>
+        <div class="input-box-register">
+          <div>
+            <input type="text" name="nom" 
+            placeholder="Nom de famille" id="nom" required>
+          </div>
+          <div>
+            <input type="text" name="prenom" 
+            placeholder="Prénom" id="prenom" required>
+          </div>
+        </div>
 
-    <label for="date_naissance">Date de naissance</label>
-    <input name="date_naissance" id="date_naissance" required>
+      <div class="input-box-register">
+        <div>
+          <input type="email" name="username" 
+          placeholder="Adresse e-mail" id="email" required>
+        </div>
+        <div>
+          <input type="tel" name="no_telephone" 
+          placeholder="Numéro de téléphone" id="no_telephone" required>
+        </div>
+      </div>
 
-    <label for="sexe">Sexe</label>
-    <input name="sexe" id="sexe" required>
+      <div class="input-box-register">
+        <p><label for="date_naissance">Date de naissance</label></p>
+        <input type="date" name="date_naissance" 
+        id="date_naissance">
+      </div>
+      
 
-    <label for="no_telephone">Numéro de téléphone</label>
-    <input name="no_telephone" id="no_telephone" required>
 
-    <label for="adresse">Adresse</label>
-    <input name="adresse" id="adresse" required>
+      <div class="input-box-register">
+        <p><label for="sexe">À quel genre vous identifiez-vous ?</label></p>
+        <select name="sexe" id="sexe" required>
+          <option value="">Faites votre choix</option>
+          <option value="maculin">Masculin</option>
+          <option value="feminin">Féminin</option>
+          <option value="-">Autre</option>
+        </select>
+      </div>
 
-    <label for="email">Email</label>
-    <input name="email" id="email" required>
 
-    <label for="password">Mot de passe</label>
-    <input type="password" name="password" id="mdp" required>
+      <div class="input-box-register">
+        <input type="text" name="adresse" 
+        placeholder="Adresse postale" id="adresse" required>
+      </div>
 
-    <input type="submit" value="S'inscrire">
-  </form>
+
+      <div class="input-box-register">
+        <input type="password" name="password" 
+        placeholder="Mot de passe" id="mdp" required>
+      </div>
+
+      <button type="submit" class="btn"> S'inscrire</button>
+    </form>
+  </div>
 {% endblock %}

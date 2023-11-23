@@ -1,21 +1,36 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Se connecter {% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
-  <div class="login-container"></div>
-    <form method="post">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" required>
+  <div class="login-container">
+    <form method="post" class="login-form">
+    <div class="wrapper">
+      <h1>Se connecter</h1>
 
-      <label for="password">Mot de passe</label>
-      <input type="password" name="password" id="mdp" required>
-      
-      <input type="submit" value="Se connecter">
+      <div class="input-box">
+        <input type="text" name="email"
+        placeholder="Adresse e-mail" id="email" required>
+        <i class='bx bxs-user' ></i>
+      </div>
+
+      <div class="input-box">
+        <input type="password" name="password"
+        placeholder="Mot de passe" id="mdp" required>
+        <i class='bx bxs-lock-alt' ></i>
+      </div>
+      <div class="remember-forgot">
+        <label><input type="checkbox"> 
+          Se rappeler de moi</label>
+          <a href="#">Mot de passe oublié ?</a>
+      </div>
+
+      <button type="submit" class="btn"> Se connecter</button>
+
+      <div class="register-link">
+        <p>Vous n'avez pas encore de compte ?</p> 
+        <p><a href="{{ url_for('auth.register') }}">
+          Inscrivez-vous</Inscrivez-vous></a></p>
+      </div>
+      </div>
     </form>
-
-    <p class="register-link">Vous n'avez pas de compte ? <a href="{{ url_for('auth.register') }}">S'inscrire ici</a></p>
   </div>
 {% endblock %}
