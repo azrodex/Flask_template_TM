@@ -1,5 +1,6 @@
 <!doctype html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Lumière de Vie</title>
@@ -9,8 +10,12 @@
     <header>
         <div class="navbar">
             <ul class="links">
-                <li><a href="{{ url_for('home.home_page') }}">Accueil</a></li>
-                <li><a href="{{ url_for('home.contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('home.home_page') }}">
+                        <i class='bx bxs-home'></i>
+                    </a>
+                </li>
+                <li><a href="{{ url_for('home.contact') }}">Contact</a>
+                </li>
                 <li><a href="{{ url_for('home.services') }}">Services</a></li>
                 <li><a href="{{ url_for('home.decouvrir') }}">Découvrir</a></li>
             </ul>

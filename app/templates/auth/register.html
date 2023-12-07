@@ -1,64 +1,66 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="register-container">
-    <form method="post">
-      <div class="info">
-        <h1>S'inscrire</h1>
 
-        <div class="input-box-register">
-          <div>
-            <input type="text" name="nom" 
-            placeholder="Nom de famille" id="nom" required>
+<body class="register-body">
+  <section class="login-section">
+    <div class="form-container-register">
+      <h1>S'inscrire</h1>
+      <form id="registrationForm" method="post" onsubmit="return ConfirmPasswords()">
+
+        <div class="input-box input-row">
+          <div class="input-name">
+            <input type="text" name="username" placeholder="Nom" id="nom" required>
           </div>
-          <div>
-            <input type="text" name="prenom" 
-            placeholder="Prénom" id="prenom" required>
+          <div class="input-name">
+            <input type="text" name="prenom" placeholder="Prénom" id="prenom" required>
           </div>
         </div>
 
-      <div class="input-box-register">
-        <div>
-          <input type="email" name="username" 
-          placeholder="Adresse e-mail" id="email" required>
+        <div class="input-box">
+          <input type="email" name="email" placeholder="Adresse e-mail" id="email" required>
+          <i class='bx bxs-user'></i>
         </div>
-        <div>
-          <input type="tel" name="no_telephone" 
-          placeholder="Numéro de téléphone" id="no_telephone" required>
+
+        <div class="input-box">
+          <input type="tel" name="no_telephone" placeholder="Numéro de téléphone" id="no_telephone" required>
+          <i class='bx bxs-phone'></i>
         </div>
-      </div>
 
-      <div class="input-box-register">
-        <p><label for="date_naissance">Date de naissance</label></p>
-        <input type="date" name="date_naissance" 
-        id="date_naissance">
-      </div>
-      
+        <div class="input-box input-row">
+          <div class="input-date">
+            <label for="date_naissance">Date de naissance</label>
+            <input type="date" name="date_naissance" id="date_naissance">
+          </div>
+          <div class="input-sexe">
+            <label for="sexe">À quel genre vous identifiez-vous ?</label>
+            <select name="sexe" id="sexe">
+              <option value="">Faites votre choix</option>
+              <option value="masculin">Masculin</option>
+              <option value="feminin">Féminin</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+        </div>
 
+        <div class="input-box">
+          <input type="text" name="adresse" placeholder="Adresse postale" id="adresse">
+          <i class='bx bxs-map'></i>
+        </div>
 
-      <div class="input-box-register">
-        <p><label for="sexe">À quel genre vous identifiez-vous ?</label></p>
-        <select name="sexe" id="sexe" required>
-          <option value="">Faites votre choix</option>
-          <option value="maculin">Masculin</option>
-          <option value="feminin">Féminin</option>
-          <option value="-">Autre</option>
-        </select>
-      </div>
+        <div class="input-box">
+          <input type="password" name="password" placeholder="Mot de passe" id="password" required>
+          <i id="lockIcon" class='bx bxs-lock-alt'></i>
+        </div>
 
+        <div class="input-box">
+          <input type="password" name="confirm-password" placeholder="Confirmez votre mot de passe" id="confirm-password" required>
+          <i id="lockIcon" class='bx bxs-lock-alt'></i>
+        </div>
+        <div><button type="submit" class="btn">Se connecter</button></div>
 
-      <div class="input-box-register">
-        <input type="text" name="adresse" 
-        placeholder="Adresse postale" id="adresse" required>
-      </div>
-
-
-      <div class="input-box-register">
-        <input type="password" name="password" 
-        placeholder="Mot de passe" id="mdp" required>
-      </div>
-
-      <button type="submit" class="btn"> S'inscrire</button>
-    </form>
-  </div>
+      </form>
+    </div>
+  </section>
+</body>
 {% endblock %}
