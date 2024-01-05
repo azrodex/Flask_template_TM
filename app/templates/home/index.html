@@ -8,5 +8,38 @@
 {% endblock %}
 
 {% block content%}
-    <p>Ceci est un paragraphe de bienvenue.</p>
+<div class="home-content">
+    <div class="stats">
+        <div>
+            <p class="chiffre">xxx</p>
+            <p class="stats-text">Consultants</p>
+            <i class='bx bxs-group stat-icon'></i>
+        </div>
+        <div>
+            <p class="chiffre">xxx</p>
+            <p class="stats-text">Satisfaits</p>
+            <i class='bx bxs-wink-smile stat-icon'></i>
+        </div>
+        <div>
+            <p class="chiffre">1</p>
+            <p class="stats-text">Lieu</p>
+            <i class='bx bxs-location-plus stat-icon'></i>
+        </div>
+        <div>
+            <p class="chiffre">100%</p>
+            <p class="stats-text">Discrétion et sécurité</p>
+            <i class='bx bxs-lock-alt stat-icon'></i>
+        </div>
+        <div>
+            <p class="chiffre">1</p>
+            <p class="stats-text">passion</p>
+            <i class='bx bxs-heart stat-icon'></i>
+        </div>
+    </div>
+    <div id="quote"></div>
+    <button id="generate-btn">Générer une citation</button>
+    
+    <script src="app.js"></script>
+</div>
+
 {% endblock %}
