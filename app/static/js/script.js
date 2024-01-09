@@ -90,17 +90,37 @@ const Quotes = [
 
   ];
 
+function genererCitation() {
+    const indiceAleatoire = Math.floor(Math.random() * Quotes.length);
+    const { quote, author } = Quotes[indiceAleatoire];
 
-function generateQuote() {
-    const randomIndex = Math.floor(Math.random() * Quotes.length);
-    const { quote, author } = Quotes[randomIndex];
-    document.getElementById('quote').textContent = `"${quote}" - ${author}`;
+    const quotesElement = document.getElementById('citation');
+
+    quotesElement.innerHTML = `"${quote}"<br><span class="auteur">${author}</span></br>`;
 }
 
-// Ajoutez un gestionnaire d'événements au bouton
-document.getElementById('generate-btn').addEventListener('click', generateQuote);
+document.getElementById('generate-btn').addEventListener('click', genererCitation);
 
-generateQuote();
+genererCitation();
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuHamburger = document.querySelector(".menu-hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    console.log("menuHamburger:", menuHamburger); // Ajoutez cette ligne
+
+    if (menuHamburger) {
+        menuHamburger.addEventListener('click', function () {
+            navLinks.classList.toggle('mobile-menu');
+        });
+    }
+});
+
+
+
+
+
+
 
   
   

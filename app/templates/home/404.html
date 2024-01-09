@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}404 not found (Page non trouvée){% endblock %}</h1>
+  <div id="erreur">
+    <h1>404 not found (Page non trouvée)</h1>
+  </div>
+{% endblock %}
+
+{% block content%}
+
+    <p>Ceci est un paragraphe de bienvenue.</p>
 {% endblock %}

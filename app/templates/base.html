@@ -1,4 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -7,41 +9,54 @@
 </head>
 
 <body>
-    <header>
-        <div class="navbar">
-            <ul class="links">
-                <li><a href="{{ url_for('home.home_page') }}">
-                        <i class='bx bxs-home'></i>
+    <nav class="navbar">
+        <a href="#" class="logo">LUMIÈRE DE VIE</a>
+        <div class="nav-links">
+            <ul>
+                <li class="active"><a href="{{ url_for('home.home_page')}}">home</a></li>
+                <li><a href="{{ url_for('home.decouvrir')}}">découvrir</a></li>
+                <li><a href="{{ url_for('home.services')}}">services</a></li>
+                <li><a href="{{ url_for('home.contact')}}">contact</a></li>
+                {% if g.user %}
+                <li>
+                    <a href="{{ url_for('user.show_profile') }}">
+                        <i class='bx bxs-user nav-icon'></i>
                     </a>
                 </li>
-                <li><a href="{{ url_for('home.contact') }}">Contact</a>
+                <li>
+                    <a href="{{ url_for('auth.logout') }}">Se déconnecter</a>
                 </li>
-                <li><a href="{{ url_for('home.services') }}">Services</a></li>
-                <li><a href="{{ url_for('home.decouvrir') }}">Découvrir</a></li>
+            {% else %}
+                <li>
+                    <a href="{{ url_for('auth.register') }}">S'inscrire</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('auth.login') }}">Se connecter</a>
+                </li>
+            {% endif %}
             </ul>
-            <div>
-                {% if g.user %}
-                    <li><a href="{{ url_for('auth.logout') }}">Se déconnecter</a></li>
-                    <li><a href="{{url_for('user.show_profile')}}">Afficher le profil</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('auth.register') }}">S'inscrire</a></li>
-                    <li><a href="{{ url_for('auth.login') }}">Se connecter</a></li>
-                {% endif %}
-            </div>
         </div>
-        {% block header %}{% endblock %}
-    </header>
+        <i class='bx bx-menu menu-hamburger'></i>
+    </nav>
+    <header></header>
 
-    
-        
     <section class="content">
         {% block content %}{% endblock %}
-    
-        
+
         {% for message in get_flashed_messages() %}
             <div class="flash">{{ message }}</div>
         {% endfor %}
     </section>
-
-    <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
+
+<script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}" defer></script>
+
+<!-- <script type="text/javascript">
+    const menuHamburger = document.querySelector(".menu-hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    menuHamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile-menu');
+    });
+</script> -->
+
+</html>

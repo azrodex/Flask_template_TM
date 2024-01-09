@@ -9,82 +9,81 @@
 {% endblock %}
 
 {% block content%}
-
-<div class="contact-content">
-    <a href="#contact-form" class="box-link scroll-link">
+<body class="contact-body">
+    <div class="contact-content">
+        <a href="#contact-form" class="box-link scroll-link">
+            <div class="box-contact">
+                <i class='bx bx-envelope cont-icon'></i>
+                <div class="contact-wrapper">
+                    <h2>Écrivez-moi</h2>
+                    <p>Remplissez le formulaire en ligne en incluant vos coordonnées</p>
+                </div>
+            </div>
+        </a>
+        <a href="#opentime-location" class="box-link scroll-link">
+            <div class="box-contact">
+                <i class='bx bxs-home cont-icon'></i>
+                <div class="contact-wrapper">
+                    <h2>Venez me voir</h2>
+                    <p>Je vous accueille volontiers chez moi pour répondre à vos questions.
+                        Consultez l'adresse et les horaires pour savoir où et quand passer.</p>
+                </div>
+            </div>
+        </a>
         <div class="box-contact">
-            <i class='bx bx-envelope cont-icon'></i>
+            <i class='bx bxs-phone cont-icon'></i>
             <div class="contact-wrapper">
-                <h2>Écrivez-moi</h2>
-                <p>Remplissez le formulaire en ligne en incluant vos coordonnées</p>
+                <h2>Appelez-moi</h2>
+                <p>Fixez une date pour un entretien téléphonique.</p>
             </div>
         </div>
-    </a>
-    <a href="#opentime-location" class="box-link scroll-link">
-        <div class="box-contact">
-            <i class='bx bxs-home cont-icon'></i>
-            <div class="contact-wrapper">
-                <h2>Venez me voir</h2>
-                <p>Je vous accueille volontiers chez moi pour répondre à vos questions.
-                    Consultez l'adresse et les horaires pour savoir où et quand passer.</p>
-            </div>
+        <div class="contact-form" id="contact-form">
+            <h2>Écrivez-moi</h2>
+            <form action="https://formspree.io/f/mgegerad" method="post">            
+                <div class="form-line">
+                    <input type="text" name="nom" placeholder="Votre nom" required>
+                    <input type="text" name="prenom" placeholder="Votre prénom" required>
+                </div>
+                <div class="form-line">
+                    <input type="email" name="_replyto" placeholder="Votre adresse e-mail" required>
+                    <input type="text" name="sujet" placeholder="Quel est le sujet de votre message ?">
+                </div>
+                <textarea name="message" id="" placeholder="Écrivez votre message ici ..."></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
         </div>
-    </a>
-    <div class="box-contact">
-        <i class='bx bxs-phone cont-icon'></i>
-        <div class="contact-wrapper">
-            <h2>Appelez-moi</h2>
-            <p>Fixez une date pour un entretien téléphonique.</p>
-        </div>
-    </div>
-    <div class="contact-form" id="contact-form">
-        <h2>Écrivez-moi</h2>
-        <form action="https://formspree.io/f/mgegerad" method="post">            
-            <div class="form-line">
-                <input type="text" name="nom" placeholder="Votre nom" required>
-                <input type="text" name="prenom" placeholder="Votre prénom" required>
-            </div>
-            <div class="form-line">
-                <input type="email" name="_replyto" placeholder="Votre adresse e-mail" required>
-                <input type="text" name="sujet" placeholder="Quel est le sujet de votre message ?">
-            </div>
-            <textarea name="message" id="" placeholder="Écrivez votre message ici ..."></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </div>
-    <h2 id="adresse-horaires-title">Adresse et Horaires</h2>
-    <div id="opentime-location">
-        <div id="plan">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2739.4974844604576!2d7.061928075422341!3d46.63668897111736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e62575948b371%3A0x99b7e541e852c04a!2sChem.%20de%20l&#39;Ondine%2018%2C%201632%20Riaz!5e0!3m2!1sfr!2sch!4v1704461029883!5m2!1sfr!2sch" 
-                width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div id="opentime">
-                <h2>Horaires d'Ouverture</h2>
-                <div class="jour-horaire">
-                    <p class="jour">Lundi</p>
-                    <p>17H00 - 20H00</p>
+        <h2 id="adresse-horaires-title">Adresse et Horaires</h2>
+        <div id="opentime-location">
+            <div id="plan">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2739.4974844604576!2d7.061928075422341!3d46.63668897111736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e62575948b371%3A0x99b7e541e852c04a!2sChem.%20de%20l&#39;Ondine%2018%2C%201632%20Riaz!5e0!3m2!1sfr!2sch!4v1704461029883!5m2!1sfr!2sch" 
+                    width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div class="jour-horaire">
-                    <p class="jour">Mardi</p>
-                    <p>Fermé</p>
-                </div>
-                <div class="jour-horaire">
-                    <p class="jour">Mercredi et Jeudi</p>
-                    <p>17H00 - 20H00</p>
-                </div>
-                <div class="jour-horaire">
-                    <p class="jour">Vendredi</p>
-                    <p>17H00 - 21H00</p>
-                </div>
-                <div class="jour-horaire">
-                    <p class="jour">Samedi et Dimanche</p>
-                    <p>10H00 - 12H00</p>
-                    <p>13H00 - 20H00</p>
+                <div id="opentime">
+                    <h2>Horaires d'Ouverture</h2>
+                    <div class="jour-horaire">
+                        <p class="jour">Lundi</p>
+                        <p>17H00 - 20H00</p>
+                    </div>
+                    <div class="jour-horaire">
+                        <p class="jour">Mardi</p>
+                        <p>Fermé</p>
+                    </div>
+                    <div class="jour-horaire">
+                        <p class="jour">Mercredi et Jeudi</p>
+                        <p>17H00 - 20H00</p>
+                    </div>
+                    <div class="jour-horaire">
+                        <p class="jour">Vendredi</p>
+                        <p>17H00 - 21H00</p>
+                    </div>
+                    <div class="jour-horaire">
+                        <p class="jour">Samedi et Dimanche</p>
+                        <p>10H00 - 12H00</p>
+                        <p>13H00 - 20H00</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
+</body>
 {% endblock %}

@@ -1,14 +1,26 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Profil de l'utilisateur connecté {% endblock %}</h1>
+    <div class="banniere-contact">
+        <h1>Bonjour {{g.user.prenom}}</h1>
+        <h2>Ceci est votre espace utilisateur. Ici, vous pouvez consulter l'historique de vos séances,
+          planifiez un nouveau rendez-vous ou vous remémorer la date du prochain. Mais pas que ...
+          Il est également possible de consulter vos informations personnelles et de les modifier.</h2>
+        <h1>En bref, c'est votre coin à vous !</h1>
+    </div>
 {% endblock %}
 
+
 {% block content %}
-    <ul>
-        <li>nom: {{g.user.nom}}</li>
-        <li>mot de passe: {{g.user.mdp}}</li>
-        <li>prenom: {{g.user.prenom}}</li>
-    </ul>
+<div class="account">
+  <div class="id-user"> {{g.user.nom}} {{g.user.prenom}}</div>
+  <div class="info-perso"> 
+    <div>{{g.user.email_client}}</div>
+    <div>{{g.user.adresse}}</div>
+    <div>{{g.user.no_téléphone}}</div>
+    <div>{{g.user.date_naissance}} {{g.user.sexe}}</div>
+    <div>{{g.user.nom}}</div>
+  
+</div>
     
 {% endblock %}
