@@ -1,26 +1,20 @@
-
-*{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
 }
 
-header{
-    height: 100vh;
-    width: 100vw;
-    background-image:url(https://therapeute-energeticienne.org/wp-content/uploads/2021/06/meditate-5375835_1920-1024x683.jpg) ;
-    background-size: cover;
-}
 
-.navbar{
-    position: absolute;
-    padding: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.navbar {
+  position: absolute;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .navbar a {
@@ -99,11 +93,107 @@ header{
   }
 }
 
+.header-home {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('https://therapeute-energeticienne.org/wp-content/uploads/2021/06/meditate-5375835_1920-1024x683.jpg');
+  background-size: cover;
+}
+
+.header-home h1 {
+  font-size: 75px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+
+.stats {
+  height: 150px;
+  padding: 0 30px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.stats div {
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chiffre {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.stats-text {
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.stat-icon {
+  opacity: 0.4;
+  color: #b0b0b0;
+  font-size: 5em;
+}
+
+.presentation img{
+  height: 100px;
+  width: 100px;
+}
+
+
+#citation {
+font-style: italic;
+color: whitesmoke;
+font-weight: bold;
+font-size: 50px;
+background-color: #00856C;
+max-width: 600px;
+text-align: center;
+padding: 20px;
+margin: 100px auto;
+border: 1px solid #ccc;
+border-radius: 15px;
+box-shadow: 0px 20px 50px -20px #b7b7b7;
+}
+
+
+#generate-btn {
+display: block;
+margin: 0 auto;
+padding: 10px;
+background-color: #00856C;
+color: #fff;
+border: none;
+cursor: pointer;
+font-size: 1em;
+}
+
+#generate-btn:hover {
+background-color: #004a3c;
+}
+
+.auteur{
+font-style: normal;
+font-size: 30px;
+font-weight: bold;
+}
+
 
 
 
 
 /* CSS de la page de login */
+body.
 
 .login-body {
   overflow: hidden;
@@ -511,126 +601,4 @@ header{
     font-weight: bold;
   }
 
-  /* CSS de la home page */
-
-  .banniere-home {
-    opacity: 0.8;
-    position: relative;
-    background-position: center;
-    height: 400px;
-    background-image: url('https://i0.wp.com/thetemplelife.com/wp-content/uploads/2018/04/Radient-Love-1.jpeg?w=3000&ssl=1');
-    background-size: cover;
-    padding: 15px;
-}
-
-.banniere-home::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.banniere-home h1 {
-    font-weight: bold; 
-    position: absolute;
-    bottom: 50px;
-    left: 10px;
-    margin: 0;
-    color: #fff;
-}
-
-.banniere-home h2 {
-    font-weight: bold; 
-    position: absolute;
-    bottom: 10px;
-    left: 70px;
-    margin: 0;
-    color: #027862;
-}
-
-.stats {
-  margin-top: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.stats div {
-  text-align: center;
-  position: relative; 
-}
-
-.chiffre {
-  font-size: 1.5em;
-  margin: 0;
-  position: relative; 
-}
-
-.stats-text {
-  font-size: 20px;
-  font-weight: bolder;
-  margin: 0;
-  position: relative;
-}
-
-.stat-icon {
-  opacity: 0.4;
-  color: #b0b0b0;
-  font-size: 5em; 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#citation {
-  font-style: italic;
-  color: whitesmoke;
-  font-weight: bold;
-  font-size: 50px;
-  background-color: #00856C;
-  max-width: 600px;
-  text-align: center;
-  padding: 20px;
-  margin: 100px auto;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  box-shadow: 0px 20px 50px -20px #b7b7b7;
-}
-
-
-#generate-btn {
-  display: block;
-  margin: 0 auto;
-  padding: 10px;
-  background-color: #00856C;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-#generate-btn:hover {
-  background-color: #004a3c;
-}
-
-.auteur{
-  font-style: normal;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-#erreur{
-  color: red;
-}
-
-.title-user{
-  color: red;
-}
-
-
-
-
+  
