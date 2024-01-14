@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetSection = document.getElementById(targetId);
 
       if (targetSection) {
-          const offset = 100;
+          const offset = 130;
           window.scrollTo({
               top: targetSection.offsetTop - offset,
               behavior: "smooth",
@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 })
 
-// Liste de citations en français
+// CITATION
+
 const Quotes = [
     { quote: "La vie est ce qui arrive pendant que vous êtes occupé à faire d'autres projets.", author: "Allen Sanders" },
     { quote: "Le seul endroit où le succès vient avant le travail est dans le dictionnaire.", author: "Vidal Sassoon" },
@@ -103,18 +104,18 @@ document.getElementById('generate-btn').addEventListener('click', genererCitatio
 
 genererCitation();
 
+// MENU BURGER 
+
 document.addEventListener("DOMContentLoaded", function () {
-    const menuHamburger = document.querySelector(".menu-hamburger");
+    const menuHamburger = document.querySelector(".bx-menu");
     const navLinks = document.querySelector(".nav-links");
 
-    console.log("menuHamburger:", menuHamburger); // Ajoutez cette ligne
-
-    if (menuHamburger) {
-        menuHamburger.addEventListener('click', function () {
-            navLinks.classList.toggle('mobile-menu');
-        });
-    }
+    menuHamburger.addEventListener('click', function(){
+        navLinks.classList.toggle('mobile-menu')
+    })
 });
+
+    
 
 
 

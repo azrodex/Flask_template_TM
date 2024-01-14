@@ -2,8 +2,7 @@
 
 {% block header %}
     <div class="banniere-contact">
-        <h1>L'essentiel est de frapper à la bonne porte</h1>
-        <h2>Contactez-moi !</h2>
+        <h1>L'essentiel est de frapper à la bonne porte !</h1>
     </div>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
@@ -11,32 +10,35 @@
 {% block content%}
 <body class="contact-body">
     <div class="contact-content">
-        <a href="#contact-form" class="box-link scroll-link">
-            <div class="box-contact">
-                <i class='bx bx-envelope cont-icon'></i>
-                <div class="contact-wrapper">
-                    <h2>Écrivez-moi</h2>
-                    <p>Remplissez le formulaire en ligne en incluant vos coordonnées</p>
+        <div class="dir-box">
+            <a href="#contact-form" class="box-link scroll-link">
+                <div class="box-contact">
+                    <i class='bx bx-envelope cont-icon'></i>
+                    <div class="contact-wrapper">
+                        <h2>Écrivez-moi</h2>
+                        <p>Remplissez le formulaire en ligne en incluant vos coordonnées</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <a href="#opentime-location" class="box-link scroll-link">
-            <div class="box-contact">
-                <i class='bx bxs-home cont-icon'></i>
-                <div class="contact-wrapper">
-                    <h2>Venez me voir</h2>
-                    <p>Je vous accueille volontiers chez moi pour répondre à vos questions.
-                        Consultez l'adresse et les horaires pour savoir où et quand passer.</p>
+            </a>
+            <a href="#opentime-location" class="box-link scroll-link">
+                <div class="box-contact">
+                    <i class='bx bxs-home cont-icon'></i>
+                    <div class="contact-wrapper">
+                        <h2>Venez me voir</h2>
+                        <p>Je vous accueille volontiers chez moi pour répondre à vos questions.
+                            <br>Consultez l'adresse et les horaires pour savoir où et quand passer.</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <div class="box-contact">
-            <i class='bx bxs-phone cont-icon'></i>
-            <div class="contact-wrapper">
-                <h2>Appelez-moi</h2>
-                <p>Fixez une date pour un entretien téléphonique.</p>
+            </a>
+            <div class="box-contact">
+                <i class='bx bxs-phone cont-icon'></i>
+                <div class="contact-wrapper">
+                    <h2>Appelez-moi</h2>
+                    <p>Fixez une date pour un entretien téléphonique.</p>
+                </div>
             </div>
         </div>
+    <div class="contact-form-section">
         <div class="contact-form" id="contact-form">
             <h2>Écrivez-moi</h2>
             <form action="https://formspree.io/f/mgegerad" method="post">            
@@ -52,6 +54,7 @@
                 <button type="submit">Envoyer</button>
             </form>
         </div>
+    </div>
         <h2 id="adresse-horaires-title">Adresse et Horaires</h2>
         <div id="opentime-location">
             <div id="plan">
