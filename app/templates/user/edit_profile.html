@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Modifier le profil</h1>
+  <form method="post" action="{{ url_for('user.edit_profile') }}">
+    <div class="id_user">
+        <label for="username">Nom</label>
+        <input type="text" name="username" value="{{ g.user.nom }}" required>
+
+        <label for="prenom">Prénom</label>
+        <input type="text" name="prenom" value="{{ g.user.prenom }}" required>
+    </div>
+    <div class="info-perso">
+        <div>
+            <label for="prenom">Adresse e-mail</label>
+            <input type="email" name="email" value="{{ g.user.email_client }}" required>
+        </div>
+        <div>
+            <label for="prenom">Adresse postale</label>
+            <input type="text" name="adresse" value="{{ g.user.adresse }}" required>
+        </div>
+        <div>
+            <label for="prenom">n° de téléphone</label>
+            <input type="text" name="no_telephone" value="{{ g.user.no_téléphone }}" required>
+        </div>
+        <div>
+            <label for="prenom">Date de naissance</label>
+            <input type="text" name="date_naissance" value="{{ g.user.date_naissance }}" required>
+        </div>
+        <div>
+            <label for="prenom">Genre</label>
+            <input type="text" name="sexe" value="{{ g.user.sexe }}" required>
+        </div>
+        <div>
+            <label for="prenom">Mot de passe</label>
+            <input type="text" name="password" value="{{ g.user.mdp_client }}" required>
+        </div>
+    <button type="submit">Enregistrer les modifications</button>
+  </form>
+{% endblock %}

@@ -1,65 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <body class="register-body">
+    <section class="login-section">
+      <div class="form-container-register">
+        <h1>S'inscrire</h1>
+        <form id="registrationForm" method="post" onsubmit="return ConfirmPasswords()">
 
-<body class="register-body">
-  <section class="login-section">
-    <div class="form-container-register">
-      <h1>S'inscrire</h1>
-      <form id="registrationForm" method="post" onsubmit="return ConfirmPasswords()">
-
-        <div class="input-box input-row">
-          <div class="input-name">
-            <input type="text" name="username" placeholder="Nom" id="nom" required>
+          <div class="input-box input-row">
+            <div class="input-name">
+              <input type="text" name="username" placeholder="Nom" id="nom" required>
+            </div>
+            <div class="input-name">
+              <input type="text" name="prenom" placeholder="Prénom" id="prenom" required>
+            </div>
           </div>
-          <div class="input-name">
-            <input type="text" name="prenom" placeholder="Prénom" id="prenom" required>
+
+          <div class="input-box">
+            <input type="email" name="email" placeholder="Adresse e-mail" id="email" required>
+            <i class='bx bxs-user'></i>
           </div>
-        </div>
 
-        <div class="input-box">
-          <input type="email" name="email" placeholder="Adresse e-mail" id="email" required>
-          <i class='bx bxs-user'></i>
-        </div>
-
-        <div class="input-box">
-          <input type="tel" name="no_telephone" placeholder="Numéro de téléphone" id="no_telephone" required>
-          <i class='bx bxs-phone'></i>
-        </div>
-
-        <div class="input-box input-row">
-          <div class="input-date">
-            <label for="date_naissance">Date de naissance</label>
-            <input type="date" name="date_naissance" id="date_naissance">
+          <div class="input-box">
+            <input type="tel" name="no_telephone" placeholder="Numéro de téléphone" id="no_telephone" required>
+            <i class='bx bxs-phone'></i>
           </div>
-          <div class="input-sexe">
-            <label for="sexe">À quel genre vous identifiez-vous ?</label>
-            <select name="sexe" id="sexe">
-              <option value="">Faites votre choix</option>
-              <option value="masculin">Masculin</option>
-              <option value="feminin">Féminin</option>
-              <option value="autre">Autre</option>
-            </select>
+
+          <div class="input-box input-row">
+            <div class="input-date">
+              <label for="date_naissance">Date de naissance</label>
+              <input type="date" name="date_naissance" id="date_naissance">
+            </div>
+            <div class="input-sexe">
+              <label for="sexe">À quel genre vous identifiez-vous ?</label>
+              <select name="sexe" id="sexe">
+                <option value="">Faites votre choix</option>
+                <option value="masculin">Masculin</option>
+                <option value="feminin">Féminin</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        <div class="input-box">
-          <input type="text" name="adresse" placeholder="Adresse postale" id="adresse">
-          <i class='bx bxs-map'></i>
-        </div>
+          <div class="input-box">
+            <input type="text" name="adresse" placeholder="Adresse postale" id="adresse">
+            <i class='bx bxs-map'></i>
+          </div>
 
-        <div class="input-box">
-          <input type="password" name="password" placeholder="Mot de passe" id="password" required>
-          <i id="lockIcon" class='bx bxs-lock-alt'></i>
-        </div>
+          <div class="input-box">
+            <input type="password" name="password" placeholder="Mot de passe" id="password" required>
+            <i class='bx bxs-lock-alt'></i>
+          </div>
 
-        <div class="input-box">
-          <input type="password" name="confirm-password" placeholder="Confirmez votre mot de passe" id="confirm-password" required>
-          <i id="lockIcon" class='bx bxs-lock-alt'></i>
-        </div>
-        <div><button type="submit" class="btn">S'inscrire</button></div>
-      </form>
-    </div>
-  </section>
-</body>
+          <div class="input-box">
+            <input type="password" name="confirm-password" placeholder="Confirmez votre mot de passe" id="confirm-password" required>
+            <i class='bx bxs-lock-alt'></i>
+          </div>
+
+          <div>
+            <button type="submit" class="btn">S'inscrire</button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+  </body>
 {% endblock %}

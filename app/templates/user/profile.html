@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <div class="banniere-contact">
-        <h1>Bonjour {{g.user.prenom}}</h1>
-        <h2>Ceci est votre espace utilisateur. Ici, vous pouvez consulter l'historique de vos séances,
-          planifiez un nouveau rendez-vous ou vous remémorer la date du prochain. Mais pas que ...
-          Il est également possible de consulter vos informations personnelles et de les modifier.</h2>
-        <h1>En bref, c'est votre coin à vous !</h1>
+    <div class="banniere-profile">
+        <h1>Bonjour {{ g.user.prenom }}, </h1>
+        <h3>Bienvenue dans votre espace. Ici, vous pouvez :
+          <br> - Consulter l'historique de vos séances,
+          <br> - Planifier un nouveau rendez-vous,
+          <br> - Vous remémorer de la date de votre prochaine séance,
+          <br> - Consulter vos informations personnelles et les modifier</h3>
+        <h2>En bref, c'est votre coin à vous !</h1>
     </div>
 {% endblock %}
 
-
 {% block content %}
-<div class="account">
-  <div class="id-user"> {{g.user.nom}} {{g.user.prenom}}</div>
-  <div class="info-perso"> 
-    <div>{{g.user.email_client}}</div>
-    <div>{{g.user.adresse}}</div>
-    <div>{{g.user.no_téléphone}}</div>
-    <div>{{g.user.date_naissance}} {{g.user.sexe}}</div>
-    <div>{{g.user.nom}}</div>
-  
-</div>
-    
+    <div class="account">
+        <div class="id-user">{{ g.user.nom }} {{ g.user.prenom }}</div>
+        <div class="info-perso"> 
+            <div>{{ g.user.email_client }}</div>
+            <div>{{ g.user.adresse }}</div>
+            <div>{{ g.user.no_téléphone }}</div>
+            <div>{{ g.user.date_naissance }} {{ g.user.sexe }}</div>
+        </div>
+        <a href="{{ url_for('user.edit_profile') }}">Modifier le profil</a>
+    </div>
 {% endblock %}
