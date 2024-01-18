@@ -1,22 +1,14 @@
-from flask import Blueprint, flash, g, redirect, render_template, request, url_for
+from flask import Blueprint, flash, g, redirect, render_template, request, url_for, session
 from app.utils import login_required
-from app.db.db import get_db
-
-class User:
-    def __init__(self, no_client, nom, prenom, email_client, adresse, no_téléphone, date_naissance, sexe, mdp_client):
-        self.no_client = no_client
-        self.nom = nom
-        self.prenom = prenom
-        self.email_client = email_client
-        self.adresse = adresse
-        self.no_téléphone = no_téléphone
-        self.date_naissance = date_naissance
-        self.sexe = sexe
-        self.mdp_client = mdp_client
-
+from app.db.db import get_db, get_user_by_id
 
 # Routes /user/...
 user_bp = Blueprint('user', __name__, url_prefix='/user')
+
+def before_request():
+    g.user = None
+    if 'user_id' in session:
+        g.user = get_user_by_id(session['user_id'])
 
 # Route /user/profile accessible uniquement à un utilisateur connecté grâce au décorateur @login_required
 @user_bp.route('/profile', methods=('GET', 'POST'))
@@ -28,26 +20,24 @@ def show_profile():
 @user_bp.route('/edit_profile', methods=('GET', 'POST'))
 @login_required
 def edit_profile():
+    user_id = session.get('user_id')
+
     if request.method == 'POST':
         # Récupérez les nouvelles données du formulaire
         new_username = request.form['username']
         new_prenom = request.form['prenom']
         new_email = request.form['email']
         new_adresse = request.form['adresse']
-        new_no_telephone= request.form['no_telephone']
+        new_no_telephone = request.form['no_telephone']
         new_date_naissance = request.form['date_naissance']
         new_sexe = request.form['sexe']
         new_password = request.form['password']
 
-        if new_email != g.user.email_client:
-            g.user.email_client = new_email
-
-
         # Mettez à jour les données de l'utilisateur dans la base de données
         db = get_db()
         db.execute(
-        "UPDATE client SET nom = ?, prenom = ?, email_client = ?, adresse = ?, no_téléphone = ?, date_naissance = ?, sexe = ?, mdp_client = ? WHERE no_client = ?",
-            (new_username, new_prenom, new_email, new_adresse, new_no_telephone, new_date_naissance, new_sexe, new_password)
+            "UPDATE client SET nom = ?, prenom = ?, email_client = ?, adresse = ?, no_téléphone = ?, date_naissance = ?, sexe = ?, mdp_client = ? WHERE no_client = ?",
+            (new_username, new_prenom, new_email, new_adresse, new_no_telephone, new_date_naissance, new_sexe, new_password, user_id)
         )
         db.commit()
 
@@ -63,9 +53,10 @@ def edit_profile():
         # Mettez à jour d'autres attributs de 'g.user' avec les nouvelles données
 
         flash('Profil mis à jour avec succès', 'success')
-        return redirect(url_for('user.show_profile'))  # Corrected route name
+        return redirect(url_for('user.show_profile'))
 
     return render_template('user/edit_profile.html')
+
 
 
 
