@@ -17,7 +17,6 @@
                   <i class='bx bxs-lock-alt' ></i>
               </div>
               <div class="rpl-obl">
-                <!-- <label><input type="checkbox">Se souvenir de moi</label> -->
                 <a href="#">Mot de passe oublié ?</a>
               </div>
               <div><button type="submit" class="btn"> Se connecter</button></div>
@@ -29,5 +28,9 @@
           </form>
       </div>
   </section>
+  
+  {% for message in get_flashed_messages() %}
+  <div class="flash">{{ message }}</div>
+  {% endfor %}
 </body>
 {% endblock %}

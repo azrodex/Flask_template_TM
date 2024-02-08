@@ -21,9 +21,10 @@ def services():
 def decouvrir():
     return render_template('page/découvrir.html')
 
-@home_bp.route('/404')
-def erreur():
-    return render_template('home/404.html')
+@home_bp.route('/rendez-vous')
+def rdv():
+    return render_template('page/rdv.html')
+
 
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues

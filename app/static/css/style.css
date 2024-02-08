@@ -496,6 +496,8 @@ font-weight: bold;
   font-weight: bold;
 }
 
+/* CSS de la page de profile */
+
 .banniere-profile {
   margin: 0;
   position: relative;
@@ -527,3 +529,97 @@ font-weight: bold;
   position: absolute;
   color: #fff;
 }
+
+.account {
+  margin-left: 50px;
+  margin-top: 65px;
+  padding: 20px;
+  background-color: #4c7476;
+  max-width: 500px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+}
+
+.account .id-user {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.account .info-perso div {
+  color: black;
+  background-color: #fff;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 30px;
+  max-width: 300px;
+  border: none;
+  padding: 10px;
+  border-radius: 30px;
+  margin: 15px auto; 
+  display: block; 
+}
+
+.account a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #4c7476;
+  padding: 10px;
+  border-radius: 30px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.account a:hover {
+  background-color: #336666;
+}
+
+
+/* CSS de la page de modification */
+
+.mod-form {
+  margin-left: 50px;
+  margin-top: 65px;
+  padding: 15px;
+  background-color: #4c7476; 
+  max-width: 500px;
+  text-align: center;
+  border-radius: 15px;
+  color: white;
+}
+
+.mod-form label {
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+}
+
+.mod-form input {
+  border: none;
+  width: 50%;
+  padding: 10px;
+  border-radius: 30px;
+  margin: 15px 0;
+}
+
+.mod-form button{
+  text-decoration: none;
+  color: #fff;
+  background-color: #4c7476;
+  padding: 10px;
+  border-radius: 30px;
+  margin-top: 20px;
+  text-align: center;
+  border: none;
+}
+
+.mod-form button:hover{
+  background-color: #336666;
+}
+
+
+

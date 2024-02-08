@@ -8,7 +8,7 @@
           <br> - Planifier un nouveau rendez-vous,
           <br> - Vous remémorer de la date de votre prochaine séance,
           <br> - Consulter vos informations personnelles et les modifier</h3>
-        <h2>En bref, c'est votre coin à vous !</h1>
+        <h2>En bref, c'est votre coin à vous !</h2>
     </div>
 {% endblock %}
 
@@ -16,11 +16,22 @@
     <div class="account">
         <div class="id-user">{{ g.user.nom }} {{ g.user.prenom }}</div>
         <div class="info-perso"> 
+            <label>Adresse e-mail : </label>
             <div>{{ g.user.email_client }}</div>
+
+            <label>Adresse postale : </label>
             <div>{{ g.user.adresse }}</div>
+
+            <label>Numéro de téléphone : </label>
             <div>{{ g.user.no_téléphone }}</div>
-            <div>{{ g.user.date_naissance }} {{ g.user.sexe }}</div>
+
+            <label>Date de naissance : </label>
+            <div>{{ g.user.date_naissance }} </div>
+
+            <label>Genre auquel vous vous identifiez : </label>
+            <div>{{ g.user.sexe }}</div>
         </div>
         <a href="{{ url_for('user.edit_profile') }}">Modifier le profil</a>
     </div>
+    <a href="{{ url_for('home.rdv')}}">Prendre rendez-vous</a>
 {% endblock %}

@@ -1,36 +1,60 @@
 {% extends 'base.html' %}
 
-{% block content %}
-  <h1>Modifier le profil</h1>
-  <form method="post" action="{{ url_for('user.edit_profile') }}">
-    <div class="id_user">
-        <label for="username">Nom</label>
-        <input type="text" name="username" value="{{ g.user.nom }}" required>
+{% block header %}
+    <div class="banniere-profile">
+        <h1>Bonjour {{ g.user.prenom }}, </h1>
+        <h3>Bienvenue dans votre espace. Ici, vous pouvez :
+          <br> - Consulter l'historique de vos séances,
+          <br> - Planifier un nouveau rendez-vous,
+          <br> - Vous remémorer de la date de votre prochaine séance,
+          <br> - Consulter vos informations personnelles et les modifier</h3>
+        <h2>En bref, c'est votre coin à vous !</h2>
+    </div>
+{% endblock %}
 
-        <label for="prenom">Prénom</label>
+{% block content %}
+<div class="mod-form">
+  <h1>Modifier votre profil</h1>
+  <form method="post" action="{{ url_for('user.edit_profile') }}">
+    <div class="form_line">
+        <label for="username">Nom : </label>
+        <input type="text" name="username" value="{{g.user.nom }}" >
+    </div>
+    <div class="form_line">
+        <label for="prenom">Prénom : </label>
         <input type="text" name="prenom" value="{{ g.user.prenom }}" required>
     </div>
-    <div class="info-perso">
+    <div class="form_line">
+        <label for="email">Adresse e-mail : </label>
+        <input type="email" name="email" value="{{ g.user.email_client }}" required>
+    </div>
+    <div class="form_line">
+        <label for="adresse">Adresse postale : </label>
+        <input type="text" name="adresse" value="{{ g.user.adresse }}">
+    </div>
+    <div class="form_line">
+        <label for="no_telephone">Numéro de téléphone : </label>
+        <input type="tel" name="no_telephone" value="{{ g.user.no_téléphone }}" required>
+    </div>
+    <div class="form_line">
         <div>
-            <label for="email">Adresse e-mail</label>
-            <input type="email" name="email" value="{{ g.user.email_client }}" required>
-        </div>
-        <div>
-            <label for="adresse">Adresse postale</label>
-            <input type="text" name="adresse" value="{{ g.user.adresse }}" required>
-        </div>
-        <div>
-            <label for="no_telephone">n° de téléphone</label>
-            <input type="text" name="no_telephone" value="{{ g.user.no_téléphone }}" required>
-        </div>
-        <div>
-            <label for="date_naissance">Date de naissance</label>
-            <input type="text" name="date_naissance" value="{{ g.user.date_naissance }}" required>
+            <label for="date_naissance">Date de naissance : </label>
+            <input type="date" name="date_naissance" value="{{ g.user.date_naissance }}">
         </div>
         <div>
             <label for="sexe">Genre</label>
-            <input type="text" name="sexe" value="{{ g.user.sexe }}" required>
+            <select name="sexe" id="sexe">
+                <option value="masculin" {% if g.user.sexe == 'masculin' %}selected{% endif %}>Masculin</option>
+                <option value="feminin" {% if g.user.sexe == 'feminin' %}selected{% endif %}>Féminin</option>
+                <option value="autre" {% if g.user.sexe == 'autre' %}selected{% endif %}>Autre</option>
+            </select>        
         </div>
+    </div>
+    
+    <div class="form_line">
+        <input type="password" name="password" placeholder="Nouveau mot de passe">
+    </div>
     <button type="submit">Enregistrer les modifications</button>
   </form>
+</div>
 {% endblock %}

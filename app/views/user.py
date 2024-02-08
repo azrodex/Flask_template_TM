@@ -2,6 +2,8 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from app.utils import login_required
 from app.db.db import get_db, get_user_by_id
 from app.views.auth import load_logged_in_user
+from werkzeug.security import check_password_hash, generate_password_hash
+
 
 # Routes /user/...
 user_bp = Blueprint('user', __name__, url_prefix='/user')
@@ -31,12 +33,13 @@ def edit_profile():
         new_no_telephone = request.form['no_telephone']
         new_date_naissance = request.form['date_naissance']
         new_sexe = request.form['sexe']
+        new_mdp = request.form['password']
 
         # Mettez à jour les données de l'utilisateur dans la base de données
         db = get_db()
         db.execute(
-            "UPDATE client SET nom = ?, prenom = ?, email_client = ?, adresse = ?, no_téléphone = ?, date_naissance = ?, sexe = ? WHERE no_client = ?",
-            (new_username, new_prenom, new_email, new_adresse, new_no_telephone, new_date_naissance, new_sexe, user_id)
+            "UPDATE client SET nom = ?, prenom = ?, email_client = ?, adresse = ?, no_téléphone = ?, date_naissance = ?, sexe = ?, mdp_client = ? WHERE no_client = ?",
+            (new_username, new_prenom, new_email, new_adresse, new_no_telephone, new_date_naissance, new_sexe, generate_password_hash(new_mdp), user_id)
         )
         db.commit()
 
@@ -49,6 +52,7 @@ def edit_profile():
             'no_téléphone': new_no_telephone,
             'date_naissance': new_date_naissance,
             'sexe': new_sexe,
+            'password' : new_mdp,
             # Ajoutez d'autres attributs au besoin
         }
 

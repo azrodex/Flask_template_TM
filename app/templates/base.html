@@ -10,7 +10,7 @@
 
 <body>
     <nav class="navbar">
-        <a href="#" class="logo">LUMIÈRE DE VIE</a>
+        <a href="{{ url_for('home.home_page')}}" class="logo">LUMIÈRE DE VIE</a>
         <div class="nav-links">
             <ul>
                 <li class="active"><a href="{{ url_for('home.home_page')}}">HOME</a></li>
@@ -47,9 +47,9 @@
     <section class="content">
         {% block content %}{% endblock %}
 
-        {% for message in get_flashed_messages() %}
+        <!-- {% for message in get_flashed_messages() %}
             <div class="flash">{{ message }}</div>
-        {% endfor %}
+        {% endfor %} -->
     </section>
 </body>
 
