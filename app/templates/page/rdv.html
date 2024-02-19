@@ -1,94 +1,9 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <div class="banniere-home">
-        <h1>Lumière de Vie</h1>
-        <h2>L'art de soigner avec les mains</h2>
-    </div>
+
 {% endblock %}
 
 {% block content%}
-<body>
-    <div class="elegant-calencar">
-       <p id="reset">reset</p>
-        <div id="header" class="clearfix">
-           <div class="pre-button"><</div>
-            <div class="head-info">
-                <div class="head-day"></div>
-                <div class="head-month"></div>
-            </div>
-            <div class="next-button">></div>
-        </div>
-        <table id="calendar">
-            <thead>
-                <tr>
-                    <th>Dim</th>
-                    <th>Lun</th>
-                    <th>Mar</th>
-                    <th>Mer</th>
-                    <th>Jeu</th>
-                    <th>Ven</th>
-                    <th>Sam</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</body>
-    <p>Ceci est un paragraphe de bienvenue.</p>
+    <iframe src="https://calendly.com/lumieredevie/60min?hide_gdpr_banner=1&primary_color=4c7476&name={{g.user.nom}}%20{{g.user.prenom}}&email={{g.user.email_client}}" style="width:100vw;height:100vh;margin-top:50px;"></iframe>
 {% endblock %}

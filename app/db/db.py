@@ -22,3 +22,7 @@ def get_user_by_id(user_id):
     else:
         return None
 
+def getlast_client_no(): 
+    db = get_db() 
+    last_client_no = db.execute("SELECT no_client FROM client ORDER BY no_client DESC LIMIT 1").fetchone()[0]
+    return last_client_no

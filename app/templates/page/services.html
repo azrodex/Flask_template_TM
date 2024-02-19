@@ -3,7 +3,15 @@
 {% block header %}
 
 {% endblock %}
-
+<!-- Ajoutez cette partie à l'intérieur de la balise <body> -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <!-- Le contenu de votre petite page ici -->
+            <p>Contenu de la petite page</p>
+            <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+    </div>
+    
 {% block content%}
 
     <p>Ceci est un paragraphe de bienvenue.</p>

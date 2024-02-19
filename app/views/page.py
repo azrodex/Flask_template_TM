@@ -1,20 +1,15 @@
-# # Importer les modules Flask nécessaires
-# from flask import Blueprint, render_template
-
-# page_bp = Blueprint('page', __name__, url_prefix='/page')
 
 
-# @page_bp.route('/contact', methods=['GET'])
-# def contact_page():
-#     return render_template('page/contact.html')
-
-
-
-# @page_bp.route('/sevice', methods=['GET'])
-# def service_page():
-#     return render_template('page/services.html')
-
-
-# @page_bp.route('/decouvrir', methods=['GET'])
-# def decouvrir_page():
-#     return render_template('page/découvrir.html')
+@app.route('/webhook/calendly', methods=['POST'])
+def calendly_webhook():
+    date = request.form['date']
+    name = request.form['name']
+    email = request.form['email']
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO rdv (date, name, email, ...) VALUES (?, ?, ?, ...)", (date, name, email, ...))
+        db.commit()
+        return "Données de rendez-vous enregistrées avec succès."
+    except Exception as e:
+        return f"Erreur lors de l'enregistrement des données de rendez-vous : {e}", 500
