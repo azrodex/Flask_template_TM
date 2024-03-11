@@ -25,7 +25,6 @@ def edit_profile():
     user_id = session.get('user_id')
 
     if request.method == 'POST':
-        # Récupérez les nouvelles données du formulaire
         new_username = request.form['username']
         new_prenom = request.form['prenom']
         new_email = request.form['email']
@@ -35,26 +34,41 @@ def edit_profile():
         new_sexe = request.form['sexe']
         new_mdp = request.form['password']
 
-        # Mettez à jour les données de l'utilisateur dans la base de données
-        db = get_db()
-        db.execute(
-            "UPDATE client SET nom = ?, prenom = ?, email_client = ?, adresse = ?, no_téléphone = ?, date_naissance = ?, sexe = ?, mdp_client = ? WHERE no_client = ?",
-            (new_username, new_prenom, new_email, new_adresse, new_no_telephone, new_date_naissance, new_sexe, generate_password_hash(new_mdp), user_id)
-        )
-        db.commit()
+        if new_mdp:
+            db = get_db()
+            db.execute(
+                "UPDATE client SET nom = ?, prenom = ?, email_client = ?, adresse = ?, no_téléphone = ?, date_naissance = ?, sexe = ?, mdp_client = ? WHERE no_client = ?",
+                (new_username, new_prenom, new_email, new_adresse, new_no_telephone, new_date_naissance, new_sexe, generate_password_hash(new_mdp), user_id)
+            )
+            db.commit()
 
-        # Mettez à jour l'objet 'g.user' avec les nouvelles données
-        g.user = {
-            'nom': new_username,
-            'prenom': new_prenom,
-            'email_client': new_email,
-            'adresse': new_adresse,
-            'no_téléphone': new_no_telephone,
-            'date_naissance': new_date_naissance,
-            'sexe': new_sexe,
-            'password' : new_mdp,
-            # Ajoutez d'autres attributs au besoin
-        }
+            g.user = {
+                'nom': new_username,
+                'prenom': new_prenom,
+                'email_client': new_email,
+                'adresse': new_adresse,
+                'no_téléphone': new_no_telephone,
+                'date_naissance': new_date_naissance,
+                'sexe': new_sexe,
+                'password' : new_mdp,
+            }
+
+        else:
+            db = get_db()
+            db.execute(
+                "UPDATE client SET nom = ?, prenom = ?, email_client = ?, adresse = ?, no_téléphone = ?, date_naissance = ?, sexe = ? WHERE no_client = ?",
+                (new_username, new_prenom, new_email, new_adresse, new_no_telephone, new_date_naissance, new_sexe, user_id)
+            )
+            db.commit()
+            g.user = {
+                'nom': new_username,
+                'prenom': new_prenom,
+                'email_client': new_email,
+                'adresse': new_adresse,
+                'no_téléphone': new_no_telephone,
+                'date_naissance': new_date_naissance,
+                'sexe': new_sexe,
+            }
 
         flash('Profil mis à jour avec succès', 'success')
         return redirect(url_for('user.show_profile'))

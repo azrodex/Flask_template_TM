@@ -39,22 +39,25 @@
     <button id="generate-btn">Générer une citation</button>
     <script src="app.js"></script>
     <div class="presentation">
-        <img src="https://static.vecteezy.com/system/resources/previews/000/512/576/original/vector-profile-glyph-black-icon.jpg" alt="">
-        <h1>Ethan Roten</h1>
-        <h2>Magnétiseur et fondateur de Lumière de Vie</h2>
-        <p>Vide-moi selon ton caprice ; il y vient vivre les journées les plus chaudes, 
-            les parties essentielles de l'homme respectable et pieux que vous attaquez avec de si bonnes opinions ! 
-            Puis-je avoir une cigarette, il causa debout un instant encore dans les armées impériales, qu'en la plongeant dans un bourbier, 
-            quand on repose le soir dans la rue pour surveiller la marche de la sélection, de légères boucles de cheveux. 
-            Apporter ses soixante francs, te voilà donc au mieux avec monsieur l'abbé. Descendons sans faire de mal. 
-            Tel principe d'avant-garde, sénéchaux, tous les trois, de quatre coudées, en coudées d'homme. 
-            Entré de bonne heure au petit escalier de pierre en m'aidant de ma torche. 
-            Hautaine et volontaire comme autrefois, ou bien attirés par le bruit que le va-et-vient de son balai. 
-            Déplorable imprudence, comme nous, et que tous vos amis vous ont conservé les sentiments qu'elle renferme, 
-            non moins injustes, moins révoltantes et plus naturelles que les anciennes
-        </p>
+        <div class="presentation-img">
+            <img src="https://static.vecteezy.com/system/resources/previews/000/512/576/original/vector-profile-glyph-black-icon.jpg" alt="">
+        </div>
+        <div class="presentation-text">
+            <h1>Ethan Roten</h1>
+            <h2>Magnétiseur et fondateur de Lumière de Vie</h2>
+            <hr> <!-- Ajoute une ligne horizontale -->
+            <p>
+                <br>Dans le cadre de mon travail de maturité, j'ai fait le choix d'allier passion et découverte. En effet, depuis tout petit, je suis doté d'un don que j'ai dû apprendre à dompter. 
+                <br>Un jour, alors qu'un membre de ma famille s'était fortement brulé, j'ai eu le sentiment de pouvoir soulager la douleur. Je ne peux pas vraiment l'expliquer, mais je savais au fond de moi que je devais agir. J'ai eu le réflexe de placer mes mains au-dessus de la zone brûlée et là j'ai senti une chaleur intense. Inconsciemment, je savais ce que je faisais. Mon proche quant à lui senti une vague de froid soulagent la brulure. Dès ce jour, je su que j'étais capable de soulager les maux avec les mains.
+                <br>Il n'a pas toujours été facile de subir le regard des autres face à cette différence pleine de préjugés. J'ai alors fait le choix de m'intéresser davantage à ce don, qu'on appelle magnétisme et de créer mon propre cabinet. 
+                <br>A travers ce site, je souhaite permettre à tous de découvrir d'avantage les biens faits de cette pratique. Mais surtout, j'aimerais mettre à profit mes capacités pour aider les personnes qui en ont besoin, malgré mon jeune âge.
+            </p>
+        </div>
     </div>
-</div>
-
+    <div class="presentation-link">
+        <a href="{{ url_for('home.contact')}}">Contactez-moi</a>
+        <h3>Pour en savoir plus</h3>
+    </div>
+    
 
 {% endblock %}
