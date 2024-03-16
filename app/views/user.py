@@ -3,6 +3,8 @@ from app.utils import login_required
 from app.db.db import get_db, get_user_by_id
 from app.views.auth import load_logged_in_user
 from werkzeug.security import check_password_hash, generate_password_hash
+from app.db.db import get_db
+import os
 
 
 # Routes /user/...
@@ -75,3 +77,15 @@ def edit_profile():
 
     return render_template('user/edit_profile.html')
 
+
+@user_bp.route('/logout_and_delete', methods=('GET', 'POST'))
+@login_required
+def logout_and_delete():
+    user_id = session.get('user_id')
+    if request.method == 'POST':
+        db = get_db()
+        g.user = db.execute('DELETE FROM client WHERE no_client = ?', (user_id)).fetchone()
+        flash('Compte supprimé avec succès')
+        session.clear()
+        return redirect(url_for('home.home_page'))
+    return render_template('user/profile.html')

@@ -701,5 +701,9 @@ font-weight: bold;
   background-color: #336666;
 }
 
-
+.flash{
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: red;
+}
 

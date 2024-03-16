@@ -1,5 +1,9 @@
-from flask import Blueprint, render_template
 from app.db.db import getlast_client_no
+from flask import Blueprint, flash, g, redirect, render_template, request, url_for, session
+from app.utils import login_required
+from app.db.db import get_db, get_user_by_id
+from app.views.auth import load_logged_in_user
+from werkzeug.security import check_password_hash, generate_password_hash
 
 # (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 
@@ -27,6 +31,15 @@ def decouvrir():
 @home_bp.route('/rendez-vous')
 def rdv():
     return render_template('page/rdv.html')
+
+@home_bp.route('/admin')
+@login_required
+def admin():
+    user_id = session.get('user_id')
+    if user_id == 25:
+        return render_template('page/admin.html')
+    else :
+        return redirect (url_for ('home.home_page'))
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])

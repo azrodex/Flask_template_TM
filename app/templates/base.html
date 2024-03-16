@@ -17,12 +17,13 @@
                 <li><a href="{{ url_for('home.decouvrir')}}">découvrir</a></li>
                 <li><a href="{{ url_for('home.services')}}">services</a></li>
                 <li><a href="{{ url_for('home.contact')}}">contact</a></li>
+                
                 {% if g.user %}
-                <li>
-                    <a href="{{ url_for('user.show_profile') }}">
-                        afficher mon profil
-                    </a>
-                </li>
+                <li><a href="{{ url_for('user.show_profile') }}">afficher mon profil </a></li>
+
+                {% if g.user.no_client == 25 %}
+                <li><a href="{{ url_for('home.admin')}}">admin</a></li>
+                {% endif %}
                 <li>
                     <a href="{{ url_for('auth.logout') }}">se déconnecter</a>
                 </li>
@@ -47,9 +48,9 @@
     <section class="content">
         {% block content %}{% endblock %}
 
-        <!-- {% for message in get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
             <div class="flash">{{ message }}</div>
-        {% endfor %} -->
+        {% endfor %} 
     </section>
 </body>
 

@@ -44,7 +44,7 @@ def register():
             return redirect(url_for("auth.login"))
          
         else:
-            error = "nom or mot de passe invalid"
+            error = "nom ou mot de passe invalide"
             flash(error)
             return redirect(url_for("auth.login"))
     else:
@@ -123,7 +123,6 @@ def load_logged_in_user():
          # On récupère la base de données et on récupère l'utilisateur correspondant à l'id stocké dans le cookie session
         db = get_db()
         g.user = db.execute('SELECT * FROM client WHERE no_client = ?', (user_id,)).fetchone()
-
 
 
 
