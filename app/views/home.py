@@ -5,8 +5,6 @@ from app.db.db import get_db, get_user_by_id
 from app.views.auth import load_logged_in_user
 from werkzeug.security import check_password_hash, generate_password_hash
 
-# (Blueprint, flash, g, redirect, render_template, request, session, url_for)
-
 # Routes /...
 home_bp = Blueprint('home', __name__)
 
@@ -40,7 +38,6 @@ def admin():
         db = get_db()
         all_data = db.execute('SELECT no_client, nom, prenom, date_naissance, no_téléphone, email_client, adresse, sexe FROM client').fetchall()
         return render_template('page/admin.html', client_data = all_data)
-
     else :
         return redirect (url_for ('home.home_page'))
 
@@ -49,22 +46,37 @@ def admin():
 def client_details(client_id):
     db = get_db()
     client_data = db.execute('SELECT no_client, nom, prenom, date_naissance, no_téléphone, email_client, adresse, sexe FROM client WHERE no_client = ?', (client_id,)).fetchone()
+    prestations = db.execute("SELECT nom_prestation FROM prestation").fetchall()
 
     if request.method == 'POST':
-        comment = request.form['comment']
-        date = request.form['date_rdv']
-        heure = request.form['heure_rdv']
-        # Insérer le commentaire dans la base de données
+        comment = request.form.get('comment')
+        date = request.form.get('date_rdv')
+        heure = request.form.get('heure_rdv')
+        type_rdv = request.form.get('type_rdv')
+
         db.execute('INSERT INTO rdv (no_client, bilan, date, heure) VALUES (?, ?, ?, ?)', (client_id, comment, date, heure))
-        db.commit()  # Confirmer la transaction après l'insertion
-        flash("Comment added successfully", "success")
+        db.commit()
 
-    # Récupérer l'historique des commentaires pour ce client
-    comments = db.execute('SELECT * FROM rdv WHERE no_client = ?', (client_id,)).fetchall()
+        presta_cursor = db.execute('SELECT id_prestation FROM prestation WHERE nom_prestation = ?', (type_rdv,))
+        presta = presta_cursor.fetchone()
 
-    return render_template('page/client_details.html', client=client_data, comments=comments)
+        rdv_cursor = db.execute('SELECT no_rdv FROM rdv WHERE date = ? and heure =?', (date, heure,))
+        rdv = rdv_cursor.fetchone()
+
+        no_presta = db.execute('INSERT INTO composition (id_prestation, no_rdv) VALUES (?, ?)', (presta['id_prestation'], rdv['no_rdv']))
+        db.commit()
+
+        nom_prestation_cursor = db.execute('SELECT prestation.nom_prestation FROM prestation INNER JOIN composition ON prestation.id_prestation = composition.id_prestation WHERE composition.no_rdv = ?', (rdv['no_rdv'],))
+        nom_prestation = nom_prestation_cursor.fetchone()['nom_prestation']
+        print(nom_prestation)
 
 
+        flash("Rendez-vous ajouté avec succès", "success")
+
+    # Récupérer l'historique des rendez-vous pour ce client avec le nom de la prestation associée
+    comments = db.execute('SELECT rdv.date, rdv.heure, prestation.nom_prestation, rdv.bilan FROM rdv INNER JOIN composition ON rdv.no_rdv = composition.no_rdv INNER JOIN prestation ON composition.id_prestation = prestation.id_prestation WHERE rdv.no_client = ?', (client_id,)).fetchall()
+
+    return render_template('page/client_details.html', client=client_data, comments=comments, prestation=prestations)
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])

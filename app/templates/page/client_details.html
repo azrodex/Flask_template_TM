@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block header %}
-    <!-- Header si nécessaire -->
-{% endblock %}
-
 {% block content %}
     <h1>Détails du client</h1>
     <h2>{{ client['nom'] }} {{ client['prenom'] }}</h2>
@@ -15,10 +11,20 @@
 
     <h2>Ajouter un commentaire</h2>
     <form method="post">
-        <textarea name="comment" rows="4" cols="50"></textarea><br>
+        <label for="type_rdv">Type de rendez-vous</label><br>
+        <select name="type_rdv" id="type_rdv">
+            <option value="">Type de rendez-vous</option>
+            <option value="téléphone">Entretien téléphonique</option>
+            <option value="oracle">Oracle</option>
+            <option value="magnétisme">Séance de magnétisme</option>
+            <option value="protection">Séance de protection</option>
+            <option value="tarot">Tirage des cartes (Tarot)</option>
+        </select><br>
         <label for="date_rdv">Date du rendez-vous</label><br>
         <input type="date" name="date_rdv" id="date_rdv"><br>
-        <input type="time" name="heure_rdv" id="heure_rdv">
+        <label for="heure">Heure du rendez-vous</label><br>
+        <input type="time" name="heure_rdv" id="heure_rdv"><br>
+        <textarea name="comment" rows="4" cols="50"></textarea><br>
         <input type="submit" value="Ajouter le commentaire">
     </form>
 
@@ -28,16 +34,18 @@
             <tr>
                 <th>Date</th>
                 <th>Heure</th>
+                <th>Type de rendez-vous</th>
                 <th>Bilan</th>
             </tr>
         </thead>
         <tbody>
             {% for rdv in comments %}
-            <tr>
-                <td>{{ rdv['date'] }}</td>
-                <td>{{ rdv['heure'] }}</td>
-                <td>{{ rdv['bilan'] }}</td>
-            </tr>
+                <tr>
+                    <td>{{ rdv['date'] }}</td>
+                    <td>{{ rdv['heure'] }}</td>
+                    <td>{{ rdv['nom_prestation'] }}</td>
+                    <td>{{ rdv['bilan'] }}</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
