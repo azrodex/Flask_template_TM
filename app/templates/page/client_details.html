@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <!-- Header si nécessaire -->
+{% endblock %}
+
+{% block content %}
+    <h1>Détails du client</h1>
+    <h2>{{ client['nom'] }} {{ client['prenom'] }}</h2>
+    <p>Date de naissance : {{ client['date_naissance'] }}</p>
+    <p>No téléphone : {{ client['no_téléphone'] }}</p>
+    <p>Email : {{ client['email_client'] }}</p>
+    <p>Adresse : {{ client['adresse'] }}</p>
+    <p>Sexe : {{ client['sexe'] }}</p>
+
+    <h2>Ajouter un commentaire</h2>
+    <form method="post">
+        <textarea name="comment" rows="4" cols="50"></textarea><br>
+        <label for="date_rdv">Date du rendez-vous</label><br>
+        <input type="date" name="date_rdv" id="date_rdv"><br>
+        <input type="time" name="heure_rdv" id="heure_rdv">
+        <input type="submit" value="Ajouter le commentaire">
+    </form>
+
+    <h2>Historique des commentaires</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Bilan</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rdv in comments %}
+            <tr>
+                <td>{{ rdv['date'] }}</td>
+                <td>{{ rdv['heure'] }}</td>
+                <td>{{ rdv['bilan'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

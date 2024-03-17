@@ -7,6 +7,37 @@
     </div>
 {% endblock %}
 
-{% block content%}
-    <p>Page admin</p>
+{% block content %}
+    <h1>Liste des clients</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>N° client</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>No téléphone</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Sexe</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in client_data %}
+            <tr>
+                <td>{{ client['no_client'] }}</td>
+                <td>{{ client['nom'] }}</td>
+                <td>{{ client['prenom'] }}</td>
+                <td>{{ client['date_naissance'] }}</td>
+                <td>{{ client['no_téléphone'] }}</td>
+                <td>{{ client['email_client'] }}</td>
+                <td>{{ client['adresse'] }}</td>
+                <td>{{ client['sexe'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
+
+
+

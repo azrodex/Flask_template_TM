@@ -37,9 +37,34 @@ def rdv():
 def admin():
     user_id = session.get('user_id')
     if user_id == 25:
-        return render_template('page/admin.html')
+        db = get_db()
+        all_data = db.execute('SELECT no_client, nom, prenom, date_naissance, no_téléphone, email_client, adresse, sexe FROM client').fetchall()
+        return render_template('page/admin.html', client_data = all_data)
+
     else :
         return redirect (url_for ('home.home_page'))
+
+@home_bp.route('/admin/<int:client_id>', methods=['GET', 'POST'])
+@login_required
+def client_details(client_id):
+    db = get_db()
+    client_data = db.execute('SELECT no_client, nom, prenom, date_naissance, no_téléphone, email_client, adresse, sexe FROM client WHERE no_client = ?', (client_id,)).fetchone()
+
+    if request.method == 'POST':
+        comment = request.form['comment']
+        date = request.form['date_rdv']
+        heure = request.form['heure_rdv']
+        # Insérer le commentaire dans la base de données
+        db.execute('INSERT INTO rdv (no_client, bilan, date, heure) VALUES (?, ?, ?, ?)', (client_id, comment, date, heure))
+        db.commit()  # Confirmer la transaction après l'insertion
+        flash("Comment added successfully", "success")
+
+    # Récupérer l'historique des commentaires pour ce client
+    comments = db.execute('SELECT * FROM rdv WHERE no_client = ?', (client_id,)).fetchall()
+
+    return render_template('page/client_details.html', client=client_data, comments=comments)
+
+
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
