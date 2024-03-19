@@ -1,12 +1,12 @@
 # Basic Flask Application for 3rd Year Gymnasium Students as part of their Maturity Project
 
-## Author
+## Auteur
 Ethan Roten, Collège du Sud.
 
 ## Description
 The current directory is as a foundational Flask template connected to an SQLite database, serving as a starting point for 3rd-year students at Collège du Sud as for their Maturity Project. With pedagogical objectives in mind, and to provide a fundamental grasp of web application architecture, the project intentionally omits any Object-Relational Mapping (ORM) or data validation modules.
 
-## How to run the project
+## Instructions de test
 1.Créer un environnement virtuel
 ```bash
 python -m venv <VIRTUAL-ENVIRONMENT-NAME>
@@ -38,7 +38,7 @@ secret_key = secrets.token_hex(16)
 print(secret_key)
 ```
 
-5. Run the project
+5. lancer le projet
 ```bash
 python -m flask run --debug
 ```
