@@ -26,11 +26,19 @@ source <VIRTUAL-ENVIRONMENT-NAME>/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-4. Ajouter un fichier config.py à la racine du projet
+4. Ajouter un fichier config.py à la racine du projet qui contient les variables 
 ```bash
+SECRET_KEY= ‘VOTRE_CLE_SECRETE’
+DATABASE=’NOM_DE_VOTRE_DB’
+```
+la clé secrète peut être générée grâce au script 
+```bash
+import secrets
+secret_key = secrets.token_hex(16)
+print(secret_key)
+```
 
-
-4. Run the project
+5. Run the project
 ```bash
 python -m flask run --debug
 ```
