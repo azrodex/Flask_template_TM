@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <div id="erreur">
-    <h1>404 not found (Page non trouvée)</h1>
+  <div class="error_container">
+    <div id="erreur" class="error-section">
+      <h1 class="error-title">OUPS!</h1>
+      <p class="error-message">Erreur 404</p>
+      <p class="error-message">PAS DE PANIQUE! La page que vous cherchez est introuvable</p>
+      <a href="/" class="error-link">Retour à la page d'accueil</a>
+    </div>
   </div>
 {% endblock %}
 
-{% block content%}
-
-    <p>Ceci est un paragraphe de bienvenue.</p>
-{% endblock %}
