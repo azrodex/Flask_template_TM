@@ -211,7 +211,6 @@ font-weight: bold;
 
 .presentation {
   color: white;
-  background-color: #507B7E;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -269,16 +268,14 @@ font-weight: bold;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #507B7E;
+  color: white;
   line-height: 1.6;
   text-align: justify;
   float: right;
   width: 30%;
   margin-left: 20px;
 }
-
-
 
 
 /* CSS de la page de connexion */
@@ -856,6 +853,74 @@ table tr:hover {
 
 .dec_test ol li {
   margin-bottom: 10px;
+}
+
+
+.service_container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: white;
+  text-align: justify;
+}
+
+.service_container h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.service_container h3 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #053D8D;
+}
+
+.service_container h4{
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.service_container p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.service_row {
+  display: flex;
+  flex-direction: column;
+}
+
+.service_row > * {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.service_oracle {
+  background-color: #4c7476;
+}
+
+.service_magn {
+  background-color: #4c7476;
+}
+
+.service_prot {
+  background-color: #4c7476;
+}
+
+.service_tarot {
+  background-color: #4c7476;
+}
+
+.service_legende {
+  font-size: 10px;
+  text-align: left;
 }
 
 
