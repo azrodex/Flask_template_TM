@@ -69,15 +69,14 @@ def client_details(client_id):
 
             nom_prestation_cursor = db.execute('SELECT prestation.nom_prestation FROM prestation INNER JOIN composition ON prestation.id_prestation = composition.id_prestation WHERE composition.no_rdv = ?', (rdv['no_rdv'],))
             nom_prestation = nom_prestation_cursor.fetchone()['nom_prestation']
-            print(nom_prestation)
 
 
             flash("Rendez-vous ajouté avec succès", "success")
 
-        # Récupérer l'historique des rendez-vous pour ce client avec le nom de la prestation associée
         comments = db.execute('SELECT rdv.date, rdv.heure, prestation.nom_prestation, rdv.bilan FROM rdv INNER JOIN composition ON rdv.no_rdv = composition.no_rdv INNER JOIN prestation ON composition.id_prestation = prestation.id_prestation WHERE rdv.no_client = ?', (client_id,)).fetchall()
 
         return render_template('page/client_details.html', client=client_data, comments=comments, prestation=prestations)
+
     else : 
         return render_template('home/404.html')
 
