@@ -1,0 +1,19 @@
+<body>
+    <h2>Demande envoyée avec succès !</h2>
+    <p>Votre demande a été soumise avec succès. </p>
+    <p>Elle sera traitée dans les plus brefs délais !</p>
+    <h1>Merci !</h1>
+   
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <button onclick="window.location.href='/contact'">Retour à la page de contact</button>
+</body>
+</html>
+

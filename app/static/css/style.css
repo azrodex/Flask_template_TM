@@ -283,8 +283,14 @@ font-weight: bold;
 .login-body, .register-body {
   margin-bottom: 100px;
   color: #fff;
-  background: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm104-eye-02_1_2.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&mark=&markalpha=90&markpad=13&markscale=10&markx=25&q=65&usm=15&vib=3&w=1400&s=9e92e454deaf878cc7358f5e05b436c9") center;
+  background: url("https://i.pinimg.com/originals/55/c1/16/55c1162e0c9a927cb0bac2a7b067c7b1.jpg") center;
+  background-size: cover;
 }
+
+
+
+
+
 
 .form-container a{
   display: flex;
@@ -476,7 +482,7 @@ font-weight: bold;
   display: flex;
   justify-content: center;
   height: 100vh;
-  background: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm104-eye-02_1_2.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&mark=&markalpha=90&markpad=13&markscale=10&markx=25&q=65&usm=15&vib=3&w=1400&s=9e92e454deaf878cc7358f5e05b436c9');
+  background: url('https://i.pinimg.com/originals/55/c1/16/55c1162e0c9a927cb0bac2a7b067c7b1.jpg');
 }
 
 .contact-form h2{
@@ -566,7 +572,7 @@ font-weight: bold;
 
 /* CSS de la page de profile */
 
-.banniere-profile {
+/* .banniere-profile {
   margin: 0;
   position: relative;
   background: url('https://awaken.com/wp-content/uploads/2020/09/istock-488572005-1024x576.jpg') right;
@@ -670,7 +676,7 @@ font-weight: bold;
 
 .lmtWIHO_gkbTeeyuvoJC.mOUYF5ZmuNL6I7t0mSFg {
   background-color: none;
-}
+} */
 
 /* CSS de la page de modification */
 
@@ -922,9 +928,6 @@ table tr:hover {
   font-size: 10px;
   text-align: left;
 }
-
-
-
 
 
 

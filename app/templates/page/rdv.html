@@ -1,10 +1,84 @@
-{% extends 'base.html' %}
+{% block content %}
+<body>
+    <h1>Prise de rendez-vous</h1>    
+    <div id="date-step">
+        <form id="date-form" action="/check-date" method="post">
+            <label for="date">Choisissez une date</label>
+            <input type="date" id="date" name="date" required><br>
+            <input type="submit" value="Vérifier les disponibilités">
+        </form>
+    </div>
+    
+    <div id="time-step">
+        <form id="time-form" action="/check-booking" method="post">
+            <p>Date sélectionnée : {{date}}</p>
+            <label for="time">Choisissez une heure :</label>
+            <select id="time" name="time" required>
+                {% if day_of_week == 'Tuesday' %}
+                    <option value="">Nous sommes fermé le mardi</option>
+                {% elif day_of_week == 'Monday' or day_of_week == 'Wednesday' or day_of_week == 'Thursday' or day_of_week == 'Friday' %}
+                    <option value="">Choisissez une tranche horaire</option>
+                    <option value="17H00">17H00 à 18H00</option>
+                    <option value="18H30">18H30 à 19H30</option>
+                    <option value="20H00">20H00 à 21H00</option>
+                {% else %}
+                    <option value="">Choisissez une tranche horaire</option>
+                    <option value="10H00">10H00 à 11H00</option>
+                    <option value="11H30">11H30 à 12H30</option>
+                    <option value="13H30">13H30 à 14H30</option>
+                    <option value="15H00">15H00 à 16H00</option>
+                    <option value="16H30">16H30 à 17H30</option>
+                    <option value="18H00">18H00 à 19H00</option>
+                    <option value="19H30">19H30 à 20H30</option>
+                {% endif %}
+            </select><br>
+            <input type="hidden" id="selected-date-input" name="date" value="{{date}}">
+            <input type="submit" value="Vérifier les disponibilités">
+        </form>
+    </div>
+    
+    <div id="confirmation-step">
+        <form id="confirmation-form" action="/confirm-booking" method="post">
+            <p>Date sélectionnée : {{date}}</p>
+            <p>Heure sélectionnée : {{time}}</p>
+            <select name="type_rdv" id="type_rdv">
+                <option value="">Type de rendez-vous</option>
+                <option value="téléphone">Entretien téléphonique</option>
+            </select><br>
+            <p>Inscrivez-vous pour obtenir plus de possibilités de rendez-vous</p>
 
-{% block header %}
 
+            {%if g.user == None%}
+                <div class="input-name">
+                    <input type="text" name="nom" placeholder="Nom" id="nom" required>
+                </div>
+                <div class="input-name">
+                    <input type="text" name="prenom" placeholder="Prénom" id="prenom" required>
+                </div>
+                <div class="input-box">
+                    <input type="tel" name="no_telephone" placeholder="Numéro de téléphone" id="no_telephone" required>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" placeholder="Adresse e-mail" id="email" required>
+                </div>
+            {%endif%}
+
+            <input type="hidden" id="selected-date-confirm" name="date" value="{{date}}">
+            <input type="hidden" id="selected-time-input" name="time" value="{{time}}">
+            <input type="submit" value="Confirmer le rendez-vous">
+        </form>
+    </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    
+</body>
 {% endblock %}
 
-{% block content%}
-<div class="calendly-inline-widget" data-url="https://calendly.com/lumieredevie/60min" style="min-width:320px;height:700px;overflow: hidden; margin-top: 50px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-{% endblock %}
