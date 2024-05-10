@@ -91,7 +91,7 @@ const Quotes = [
 
   ];
 
-function genererCitation() {
+  function genererCitation() {
     const indiceAleatoire = Math.floor(Math.random() * Quotes.length);
     const { quote, author } = Quotes[indiceAleatoire];
 
@@ -100,9 +100,11 @@ function genererCitation() {
     quotesElement.innerHTML = `"${quote}"<br><span class="auteur">${author}</span></br>`;
 }
 
-document.getElementById('generate-btn').addEventListener('click', genererCitation);
+// Attache l'événement "click" au bouton avec l'ID "generate-btn"
+document.getElementById('generate-btn').addEventListener("click", genererCitation);
 
-genererCitation();
+// Appelle la fonction pour générer une citation lors du chargement de la page
+genererCitation()
 
 // MENU BURGER 
 

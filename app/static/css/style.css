@@ -211,20 +211,13 @@ font-weight: bold;
 
 .presentation {
   color: white;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-top: 100px;
   padding: 15px;
 }
 
-.presentation-img {
-  margin-right: 100px;
-  margin-left: 100px;
-}
 
 .presentation-text {
-  flex: 1;
   margin-right: 30px;
 }
 
@@ -261,7 +254,6 @@ font-weight: bold;
 }
 
 .presentation-text {
-  max-width: 800px;
   margin: 20px 50px 30px;
   padding: 20px;
   background-color: #fff;
@@ -273,7 +265,6 @@ font-weight: bold;
   line-height: 1.6;
   text-align: justify;
   float: right;
-  width: 30%;
   margin-left: 20px;
 }
 
@@ -604,34 +595,21 @@ font-weight: bold;
   color: #fff;
 }
 
-.account {
-  flex: 0 0 50%; /* Utilise 50% de la largeur de l'écran */
+.account, .appointment{
+  flex: 0 0 50%; 
   margin: 0 10px;
   margin-top: 65px;
   padding: 20px;
   background-color: #4c7476;
   max-width: 500px;
-  max-height: 600px;
   border-radius: 15px;
   color: white;
   text-align: center;
-}
-
-.appointment {
-  flex: 0 0 50%; /* Utilise 50% de la largeur de l'écran */
-  margin: 0 10px;
-  margin-top: 65px;
-  padding: 20px;
-  background-color: #4c7476;
-  max-width: 500px;
-  max-height: 600px;
-  border-radius: 15px;
-  color: white;
-  text-align: center;
+  overflow: hidden;
 }
 
 
-.account .id-user {
+.account .id-user, .appointment h1{
   text-transform: uppercase;
   font-weight: bold;
   font-size: 30px;
@@ -639,7 +617,7 @@ font-weight: bold;
   margin-bottom: 30px;
 }
 
-.account .info-perso div {
+.account .info-perso div, .appointment-form {
   color: black;
   background-color: #fff;
   margin: 15px;
@@ -652,6 +630,17 @@ font-weight: bold;
   margin: 15px auto; 
   display: block; 
 }
+
+#date-step, #time-step, #confirmation-step {
+  margin-bottom: 15px
+}
+
+.appointment label{
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+
 
 .account a {
   display: block;
@@ -672,17 +661,60 @@ font-weight: bold;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 175vh;
-  background-color: #fcfcfc;
+  height: 120vh;
 }
 
-.appointment-form {
-  margin-bottom: 20px;
-  padding: 20px;
+.historique {
+  margin-top: 30px;
+}
+
+.historique table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historique th, .historique td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.historique th {
   background-color: #4c7476;
-  border-radius: 15px;
   color: white;
-  text-align: center;
+}
+
+.historique tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.historique tbody tr:hover {
+  background-color: #ddd;
+}
+
+.appointment input[type="submit"] {
+  background-color: #3c5b5c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.appointment input[type="submit"]:hover {
+  background-color: #336666;
+}
+
+.historique h2{
+  margin-bottom: 10px;
+}
+
+.rdv_style{
+  margin-top: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 

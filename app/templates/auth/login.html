@@ -12,10 +12,10 @@
               </div>
               <div class="input-box">
                   <input type="password" name="password" placeholder="Mot de passe" id="mdp" required>
-                  <i class='bx bxs-lock-alt' ></i>
+                  <!-- <i class='bx bxs-lock-alt' ></i> -->
               </div>
               <div class="rpl-obl">
-                <a href="">Mot de passe oublié ?</a>
+                <a href="{{ url_for('home.changer_mdp')}}">Mot de passe oublié ?</a>
               </div>
               <div><button type="submit" class="btn"> Se connecter</button></div>
               <div class="register-link">

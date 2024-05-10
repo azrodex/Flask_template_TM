@@ -36,71 +36,81 @@
     </div>
     
     <div class="appointment">
-        <div class="account-rdv">
             <h1>Prise de rendez-vous</h1>    
-            <div id="date-step" class="appointment-form">
+            <div id="date-step">
                 <form id="date-form" action="/check-date-profile" method="post">
                     <label for="date">Choisissez une date</label>
-                    <input type="date" id="date" name="date" required><br>
+                    <div class="appointment-form">
+                        <input type="date" id="date" name="date" required><br>
+                    </div>
                     <input type="submit" value="Vérifier les disponibilités">
                 </form>
             </div>
         
-            <div id="time-step" class="appointment-form">
+            <div id="time-step">
                 <form id="time-form" action="/check-booking-profile" method="post">
                     <p>Date sélectionnée : {{date}}</p>
-                    <label for="time">Choisissez une heure :</label>
-                    <select id="time" name="time" required>
-                        {% if day_of_week == 'Tuesday' %}
-                            <option value="">Nous sommes fermé le mardi</option>
-                        {% elif day_of_week == 'Monday' or day_of_week == 'Wednesday' or day_of_week == 'Thursday' or day_of_week == 'Friday' %}
-                            <option value="">Choisissez une tranche horaire</option>
-                            <option value="17H00">17H00 à 18H00</option>
-                            <option value="18H30">18H30 à 19H30</option>
-                            <option value="20H00">20H00 à 21H00</option>
-                        {% else %}
-                            <option value="">Choisissez une tranche horaire</option>
-                            <option value="10H00">10H00 à 11H00</option>
-                            <option value="11H30">11H30 à 12H30</option>
-                            <option value="13H30">13H30 à 14H30</option>
-                            <option value="15H00">15H00 à 16H00</option>
-                            <option value="16H30">16H30 à 17H30</option>
-                            <option value="18H00">18H00 à 19H00</option>
-                            <option value="19H30">19H30 à 20H30</option>
-                        {% endif %}
-                    </select><br>
+                    <label for="time">Choisissez une heure </label>
+                    <div class="appointment-form">
+                        <select id="time" name="time" required>
+                            {% if day_of_week == 'Tuesday' %}
+                                <option value="">Nous sommes fermé le mardi</option>
+                            {% elif day_of_week == 'Monday' or day_of_week == 'Wednesday' or day_of_week == 'Thursday' or day_of_week == 'Friday' %}
+                                <option value="">Choisissez une tranche horaire</option>
+                                <option value="17H00">17H00 à 18H00</option>
+                                <option value="18H30">18H30 à 19H30</option>
+                                <option value="20H00">20H00 à 21H00</option>
+                            {% else %}
+                                <option value="">Choisissez une tranche horaire</option>
+                                <option value="10H00">10H00 à 11H00</option>
+                                <option value="11H30">11H30 à 12H30</option>
+                                <option value="14H00">14H00 à 15H00</option>
+                                <option value="15H00">15H30 à 16H30</option>
+                                <option value="16H30">17H00 à 18H00</option>
+                                <option value="18H00">18H30 à 19H30</option>
+                                <option value="19H30">20H0 à 21H00</option>
+                            {% endif %}
+                        </select><br>
+                    </div>
                     <input type="hidden" id="selected-date-input" name="date" value="{{date}}">
                     <input type="submit" value="Vérifier les disponibilités">
                 </form>
             </div>
         
-            <div id="confirmation-step" class="appointment-form">
+            <div id="confirmation-step">
                 <form id="confirmation-form" action="/confirm-booking-profile" method="post">
                     <p>Date sélectionnée : {{date}}</p>
                     <p>Heure sélectionnée : {{time}}</p>
-                    <select name="type_rdv" id="type_rdv">
-                        <option value="">Type de rendez-vous</option>
-                        <option value="téléphone">Entretien téléphonique</option>
-                        <option value="oracle">Oracle</option>
-                        <option value="magnétisme">Séance de magnétisme</option>
-                        <option value="protection">Séance de protection</option>
-                        <option value="tarot">Tirage des cartes (Tarot)</option>
-                    </select><br>
-    
-    
+                    <label for="type_rdv">Choisissez un service</label>
+                    <div class="appointment-form">
+                        <select name="type_rdv" id="type_rdv">
+                            <option value="">Type de rendez-vous</option>
+                            <option value="téléphone">Entretien téléphonique</option>
+                            <option value="oracle">Oracle</option>
+                            <option value="magnétisme">Séance de magnétisme</option>
+                            <option value="protection">Séance de protection</option>
+                            <option value="tarot">Tirage des cartes (Tarot)</option>
+                        </select><br>
+                    </div>
                     <input type="hidden" id="selected-date-confirm" name="date" value="{{date}}">
                     <input type="hidden" id="selected-time-input" name="time" value="{{time}}">
                     <input type="submit" value="Confirmer le rendez-vous">
                 </form>           
             </div>
-        </div>
-    </div>
-    
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+    </div>  
 </div>
 
-
 <div class="historique">
-    <h2>Historique des commentaires</h2>
+    <h2>Historique des rendez-vous</h2>
     <table>
         <thead>
             <tr>
@@ -122,16 +132,7 @@
         </tbody>
     </table>
 </div>
-    
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">
-        {{ message }}
-        </div>
-    {% endfor %}
-    {% endif %}
-{% endwith %}
+
     
 {% endblock %}
 

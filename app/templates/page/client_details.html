@@ -21,18 +21,24 @@
                     <option value="">Choisissez une tranche horaire</option>
                     <option value="10H00">10H00 à 11H00</option>
                     <option value="11H30">11H30 à 12H30</option>
-                    <option value="13H30">13H30 à 14H30</option>
-                    <option value="15H00">15H00 à 16H00</option>
-                    <option value="16H30">16H30 à 17H30</option>
+                    <option value="14H00">14H00 à 15H00</option>
+                    <option value="15H30">15H30 à 16H30</option>
                     <option value="17H00">17H00 à 18H00</option>
-                    <option value="18H00">18H00 à 19H00</option>
                     <option value="18H30">18H30 à 19H30</option>
-                    <option value="19H30">19H30 à 20H30</option>
                     <option value="20H00">20H00 à 21H00</option>
                 </select><br>
                 <textarea name="comment" rows="4" cols="50"></textarea><br>
                 <input type="submit" value="Ajouter le commentaire">
             </form>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+    {% endwith %}
         </div>
         <div class="historique">
             <h2>Historique des commentaires</h2>

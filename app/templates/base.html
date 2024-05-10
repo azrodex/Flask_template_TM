@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Lumière de Vie</title>
+    <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}" defer></script>
 </head>
 
 <body>
@@ -48,13 +49,10 @@
     <section class="content">
         {% block content %}{% endblock %}
 
-        <!-- {% for message in get_flashed_messages() %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}  -->
     </section>
 </body>
 
-<script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}" defer></script>
+<!-- <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}" defer></script> -->
 
 
 </html>

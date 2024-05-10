@@ -220,7 +220,7 @@ def confirm_booking():
         db = get_db()
 
         prestations = db.execute("SELECT nom_prestation FROM prestation").fetchall()
-        client_id = g.user['no_client']
+        client_id = no_client
 
         db.execute("INSERT INTO rdv (date, heure, no_client) VALUES (?, ?, ?)",(date, time, no_client))
         db.commit()
@@ -249,6 +249,8 @@ def confirm_booking():
 
 
 @home_bp.route('/check-date-profile', methods=('GET', 'POST'))
+@login_required
+
 def check_date_profile():
     if request.method == 'GET':
         return render_template('user/profile.html')
@@ -265,6 +267,8 @@ def get_day(date):
     return calendar.day_name[day]
 
 @home_bp.route('/check-booking-profile', methods=('GET', 'POST'))
+@login_required
+
 def check_booking_profile():
     if request.method == 'GET':
         return render_template('user/profile.html')
@@ -288,6 +292,8 @@ def check_booking_profile():
 
 
 @home_bp.route('/confirm-booking-profile', methods=('POST',))
+@login_required
+
 def confirm_booking_profile():
     if request.method == 'POST':
         date = request.form['date']
@@ -339,3 +345,31 @@ def confirm_booking_profile():
         comments = db.execute('SELECT rdv.date, rdv.heure, prestation.nom_prestation, rdv.bilan FROM rdv INNER JOIN composition ON rdv.no_rdv = composition.no_rdv INNER JOIN prestation ON composition.id_prestation = prestation.id_prestation WHERE rdv.no_client = ?', (client_id,)).fetchall()
 
     return render_template('user/profile.html', comments=comments, prestation=prestations)
+
+
+@home_bp.route('/vérif_changer_mdp', methods=('POST', 'GET'))
+def changer_mdp():
+    if request.method == 'POST':
+        email = request.form['email']
+        new_password = request.form['password']
+        date_naissance = request.form['date_naissance']
+
+        db = get_db()
+        result = db.execute('SELECT date_naissance FROM client WHERE email_client = ?', (email,)).fetchone()
+
+        if result:
+            date_naissance_db = result['date_naissance']
+            if date_naissance_db == date_naissance:
+                db.execute('UPDATE client SET mdp_client = ? WHERE email_client = ?', (generate_password_hash(new_password), email))
+                db.commit()
+                flash('Le mot de passe a été changé avec succès.')
+                return redirect(url_for('auth.login'))
+            else:
+                flash('La date de naissance est incorrecte.')
+        else:
+            flash("Aucun utilisateur trouvé avec cette adresse e-mail.")
+            
+    return render_template('user/forget_mdp.html')
+
+
+
