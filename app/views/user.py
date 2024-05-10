@@ -18,8 +18,12 @@ def before_request():
 @user_bp.route('/profile', methods=('GET', 'POST'))
 @login_required
 def show_profile():
-    current_user = g.user
-    return render_template('user/profile.html', user=current_user)
+    if request.method == 'GET':
+        current_user = g.user
+        client_id = session.get('user_id')
+        db = get_db()
+        comments = db.execute('SELECT rdv.date, rdv.heure, prestation.nom_prestation, rdv.bilan FROM rdv INNER JOIN composition ON rdv.no_rdv = composition.no_rdv INNER JOIN prestation ON composition.id_prestation = prestation.id_prestation WHERE rdv.no_client = ?', (client_id,)).fetchall()
+        return render_template('user/profile.html', user=current_user, comments=comments )
 
 @user_bp.route('/edit_profile', methods=('GET', 'POST'))
 @login_required

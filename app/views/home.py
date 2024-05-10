@@ -82,44 +82,41 @@ def admin():
     else :
         return render_template('home/404.html')
 
-# @home_bp.route('/admin/<int:client_id>', methods=['GET', 'POST'])
-# @login_required
-# def client_details(client_id):
-#     db = get_db()
-#     client_data = db.execute('SELECT no_client, nom, prenom, date_naissance, no_téléphone, email_client, adresse, sexe FROM client WHERE no_client = ?', (client_id,)).fetchone()
-#     prestations = db.execute("SELECT nom_prestation FROM prestation").fetchall()
-#     user_id = session.get('user_id')
-#     if user_id == 25:
-#         if request.method == 'POST':
-#             comment = request.form.get('comment')
-#             date = request.form.get('date_rdv')
-#             heure = request.form.get('heure_rdv')
-#             type_rdv = request.form.get('type_rdv')
+@home_bp.route('/admin/<int:client_id>', methods=['GET', 'POST'])
+@login_required
+def client_details(client_id):
+    db = get_db()
+    client_data = db.execute('SELECT no_client, nom, prenom, date_naissance, no_téléphone, email_client, adresse, sexe FROM client WHERE no_client = ?', (client_id,)).fetchone()
+    prestations = db.execute("SELECT nom_prestation FROM prestation").fetchall()
+    user_id = session.get('user_id')
+    
+    if user_id == 25:
+        if request.method == 'POST':
+            comment = request.form.get('comment')
+            date = request.form.get('date_rdv')
+            heure = request.form.get('heure_rdv')
+            type_rdv = request.form.get('type_rdv')
 
-#             db.execute('INSERT INTO rdv (no_client, bilan, date, heure) VALUES (?, ?, ?, ?)', (client_id, comment, date, heure))
-#             db.commit()
+            rdv_amodif = db.execute('SELECT no_rdv FROM rdv WHERE no_client = ? AND date = ? AND heure = ?', (client_id, date, heure)).fetchone()
 
-#             presta_cursor = db.execute('SELECT id_prestation FROM prestation WHERE nom_prestation = ?', (type_rdv,))
-#             presta = presta_cursor.fetchone()
+            if rdv_amodif:
+                rdv_id = rdv_amodif['no_rdv']
+                db.execute('UPDATE rdv SET bilan = ? WHERE no_rdv = ?', (comment, rdv_id))
+                comments = db.execute('SELECT rdv.date, rdv.heure, prestation.nom_prestation, rdv.bilan FROM rdv INNER JOIN composition ON rdv.no_rdv = composition.no_rdv INNER JOIN prestation ON composition.id_prestation = prestation.id_prestation WHERE rdv.no_client = ?', (client_id,)).fetchall()
+                db.commit()
+                flash("Rendez-vous ajouté avec succès", "success")
+                return render_template('page/client_details.html', client=client_data, comments=comments)
+                
+            else:
+                flash("Aucun rendez-vous trouvé")
+                return render_template('page/client_details.html', client=client_data, comments=[])
 
-#             rdv_cursor = db.execute('SELECT no_rdv FROM rdv WHERE date = ? and heure =?', (date, heure,))
-#             rdv = rdv_cursor.fetchone()
+        elif request.method == 'GET':
+            comments = db.execute('SELECT rdv.date, rdv.heure, prestation.nom_prestation, rdv.bilan FROM rdv INNER JOIN composition ON rdv.no_rdv = composition.no_rdv INNER JOIN prestation ON composition.id_prestation = prestation.id_prestation WHERE rdv.no_client = ?', (client_id,)).fetchall()
+            return render_template('page/client_details.html', client=client_data, comments=comments)
+    else:
+        return render_template('home/404.html')
 
-#             no_presta = db.execute('INSERT INTO composition (id_prestation, no_rdv) VALUES (?, ?)', (presta['id_prestation'], rdv['no_rdv']))
-#             db.commit()
-
-#             nom_prestation_cursor = db.execute('SELECT prestation.nom_prestation FROM prestation INNER JOIN composition ON prestation.id_prestation = composition.id_prestation WHERE composition.no_rdv = ?', (rdv['no_rdv'],))
-#             nom_prestation = nom_prestation_cursor.fetchone()['nom_prestation']
-
-
-#             flash("Rendez-vous ajouté avec succès", "success")
-
-#         comments = db.execute('SELECT rdv.date, rdv.heure, prestation.nom_prestation, rdv.bilan FROM rdv INNER JOIN composition ON rdv.no_rdv = composition.no_rdv INNER JOIN prestation ON composition.id_prestation = prestation.id_prestation WHERE rdv.no_client = ?', (client_id,)).fetchall()
-
-#         return render_template('page/client_details.html', client=client_data, comments=comments, prestation=prestations)
-
-#     else : 
-#         return render_template('home/404.html')
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])

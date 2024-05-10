@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 {% for client in client_data %}
-                <tr>
+                <tr onclick="window.location.href='/admin/{{ client['no_client'] }}'">
                     <td>{{ client['no_client'] }}</td>
                     <td>{{ client['nom'] }}</td>
                     <td>{{ client['prenom'] }}</td>

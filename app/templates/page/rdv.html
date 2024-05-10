@@ -42,10 +42,18 @@
             <p>Date sélectionnée : {{date}}</p>
             <p>Heure sélectionnée : {{time}}</p>
             <select name="type_rdv" id="type_rdv">
-                <option value="">Type de rendez-vous</option>
-                <option value="téléphone">Entretien téléphonique</option>
+                {% if g.user == None %}
+                    <option value="">Type de rendez-vous</option>
+                    <option value="téléphone">Entretien téléphonique</option> 
+                {% else %}
+                    <option value="">Type de rendez-vous</option>
+                    <option value="téléphone">Entretien téléphonique</option>                
+                    <option value="oracle">Oracle</option>
+                    <option value="magnétisme">Séance de magnétisme</option>
+                    <option value="protection">Séance de protection</option>
+                    <option value="tarot">Tirage des cartes (Tarot)</option>
+                {% endif %}
             </select><br>
-            <p>Inscrivez-vous pour obtenir plus de possibilités de rendez-vous</p>
 
 
             {%if g.user == None%}

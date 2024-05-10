@@ -15,19 +15,21 @@
         <div class="comments">
             <h2>Ajouter un commentaire</h2>
             <form method="post">
-                <label for="type_rdv">Type de rendez-vous</label><br>
-                <select name="type_rdv" id="type_rdv">
-                    <option value="">Type de rendez-vous</option>
-                    <option value="téléphone">Entretien téléphonique</option>
-                    <option value="oracle">Oracle</option>
-                    <option value="magnétisme">Séance de magnétisme</option>
-                    <option value="protection">Séance de protection</option>
-                    <option value="tarot">Tirage des cartes (Tarot)</option>
-                </select><br>
                 <label for="date_rdv">Date du rendez-vous</label><br>
                 <input type="date" name="date_rdv" id="date_rdv"><br>
-                <label for="heure">Heure du rendez-vous</label><br>
-                <input type="time" name="heure_rdv" id="heure_rdv"><br>
+                <select id="time" name="heure_rdv" required>
+                    <option value="">Choisissez une tranche horaire</option>
+                    <option value="10H00">10H00 à 11H00</option>
+                    <option value="11H30">11H30 à 12H30</option>
+                    <option value="13H30">13H30 à 14H30</option>
+                    <option value="15H00">15H00 à 16H00</option>
+                    <option value="16H30">16H30 à 17H30</option>
+                    <option value="17H00">17H00 à 18H00</option>
+                    <option value="18H00">18H00 à 19H00</option>
+                    <option value="18H30">18H30 à 19H30</option>
+                    <option value="19H30">19H30 à 20H30</option>
+                    <option value="20H00">20H00 à 21H00</option>
+                </select><br>
                 <textarea name="comment" rows="4" cols="50"></textarea><br>
                 <input type="submit" value="Ajouter le commentaire">
             </form>
