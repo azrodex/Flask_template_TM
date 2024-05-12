@@ -279,10 +279,6 @@ font-weight: bold;
 }
 
 
-
-
-
-
 .form-container a{
   display: flex;
   color: white;
@@ -631,14 +627,29 @@ font-weight: bold;
   display: block; 
 }
 
-#date-step, #time-step, #confirmation-step {
-  margin-bottom: 15px
-}
-
 .appointment label{
   font-weight: bolder;
   font-size: x-large;
 }
+
+.appointment input[type="submit"] {
+  background-color: #3c5b5c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.appointment input[type="submit"]:hover {
+  background-color: #336666;
+}
+
+#date-step, #time-step, #confirmation-step {
+  margin-bottom: 15px
+}
+
 
 
 
@@ -692,19 +703,6 @@ font-weight: bold;
   background-color: #ddd;
 }
 
-.appointment input[type="submit"] {
-  background-color: #3c5b5c;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.appointment input[type="submit"]:hover {
-  background-color: #336666;
-}
 
 .historique h2{
   margin-bottom: 10px;
@@ -969,6 +967,63 @@ table tr:hover {
   font-size: 10px;
   text-align: left;
 }
+
+
+.forget_mdp{
+  text-align: center;
+  margin-top: 200px;
+  max-width: 400px;
+  background-color: #4c7476;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  border-radius: 10px;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+.forget_mdp h1{
+  margin-bottom: 10px;
+}
+
+.input-box-fgt_mdp {
+  margin-bottom: 20px;
+}
+
+.input-box-fgt_mdp input[type="email"], 
+.input-box-fgt_mdp input[type="password"], 
+.input-box-fgt_mdp input[type="date"] {
+  width: 100%; /* Utiliser la largeur à 100% pour remplir le conteneur */
+  height: 40px; /* Spécifier une hauteur fixe */
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+}
+
+.date-label {
+  display: block;
+  text-align: left;
+}
+
+.submit-button-fgt_mdp {
+  background-color: #3c5b5c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button-fgt_mdp:hover {
+  background-color: #336666;
+}
+
+
 
 
 

@@ -42,7 +42,7 @@ def submit_contact_form():
 
     smtp = smtplib.SMTP_SSL("smtp.gmail.com", port=465)
 
-    smtp.login(sender, "ciaxdstdyajxzsja")
+    smtp.login(sender, mdp_google)
     smtp.sendmail(sender, recipient, email.as_string())
     smtp.quit()
 
@@ -125,19 +125,6 @@ def not_found_error(text):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 @home_bp.route('/check-date', methods=('GET', 'POST'))
 def check_date():
     if request.method == 'GET':
@@ -213,7 +200,7 @@ def confirm_booking():
 
         smtp = smtplib.SMTP_SSL("smtp.gmail.com", port=465)
 
-        smtp.login(sender, "ciaxdstdyajxzsja")
+        smtp.login(sender, mdp_google)
         smtp.sendmail(sender, recipient, email.as_string())
         smtp.quit()
 

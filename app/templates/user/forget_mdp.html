@@ -1,30 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form action="/vérif_changer_mdp" method="post" onsubmit="return ConfirmPasswords()">
+<div class="forget_mdp">
+    <h1>Changer de mot de passe</h1>
 
+    <form action="/vérif_changer_mdp" method="post" class="change-password-form">
 
-    <div class="input-box">
-        <input type="email" name="email" placeholder="Adresse e-mail" id="email" required>
-        <i class='bx bxs-user' ></i>
-    </div>
-    <div class="input-date">
-        <label for="date_naissance">Date de naissance</label>
-        <input type="date" name="date_naissance" id="date_naissance">
-    </div>
-    <div class="form_line">
-        <input type="password" name="password" placeholder="Nouveau mot de passe">
-    </div>
-    <input type="submit" value="Vérifier les disponibilités">
-
-</form>
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-    {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">
-            {{ message }}
+        <div class="input-box-fgt_mdp">
+            <input type="email" name="email" id="email" placeholder="Adresse e-mail" required>
         </div>
-    {% endfor %}
-{% endif %}
-{% endwith %}
+        <div class="input-box-fgt_mdp">
+            <label for="date_naissance" class="date-label">Date de naissance</label>
+            <input type="date" name="date_naissance" id="date_naissance" required>
+        </div>
+        <div class="input-box-fgt_mdp">
+            <input type="password" name="password" placeholder="Nouveau mot de passe" required>
+        </div>
+        <input type="submit" value="Confirmer la modification" class="submit-button-fgt_mdp">
+
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+</div>
+
 {% endblock %}
+
+
